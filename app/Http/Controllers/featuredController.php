@@ -29,13 +29,14 @@ class featuredController extends Controller
         'x-rapidapi-host' => 'target1.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
         ])->get('https://target1.p.rapidapi.com/stores/list', [
-           'zipcode' => '10009',
-        ])->json()['data']['search']['products'];
+           'zipcode' => $getClientLocation,
+        ])->json()['0']['locations'];
 
         
          return view('stores',[
              'clientIP' => $clientIP,
              'getClientLocation' => $getClientLocation,
+             'storeList' => $storeList,
          ]);
     }
 
