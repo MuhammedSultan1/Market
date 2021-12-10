@@ -1,24 +1,69 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DetailsController;
+use App\Http\Controllers\ProductController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
+// ROUTES RELATED TO PRODUCTS
+Route::get('/home', 'App\Http\Controllers\featuredController@index');
+
+Route::get('/item/{tcin}/{store_id}',[
+    'uses' => 'App\Http\Controllers\DetailsController@getInfo',
+    'as'   => 'item'
+]);
+
+Route::get('/category/{category}',[
+    'uses' => 'App\Http\Controllers\CategoryController@index',
+    'as'   => 'category'
+]);
+
+//Route::get('/stores', 'App\Http\Controllers\featuredController@getLocation');
+
+Route::get('/stores', function () {
+    return view('stores');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/pants', function () {
+    return view('index');
+});
 
-require __DIR__.'/auth.php';
+Route::get('/shirts', function () {
+    return view('shirts');
+});
+
+Route::get('/shoes', function () {
+    return view('shoes');
+});
+
+
+// USER AUTHENTICATION ROUTES
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::post('/login',[UserController::class,'login']);
+
+Route::get('/logout', function () {
+    Session::forget('user');
+    return redirect('login');
+});
+
+
+
+// ROUTES RELATED TO SHOPPING CART
+Route::post('/add_to_cart',[ProductController::class, 'addToCart']);
+
+Route::get('/removecart/{id}',[ProductController::class, 'removeCart']);
+
+Route::get('/cart', [ProductController::class, 'cartList']);
+
+Route::get('ordernow',[ProductController::class, 'orderNow']);
+
+Route::post('orderplace',[ProductController::class, 'orderPlace']);
+
+Route::get('/success', function () {
+    return view('success');
+});
