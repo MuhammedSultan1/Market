@@ -90,19 +90,19 @@
                 <!-- Code block starts -->
                 <div class="flex items-center">
                     <div class="bg-white dark:bg-gray-100 rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
-                        <input aria-labelledby="label1" checked type="radio" value="cash" name="payment" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
+                        <input aria-labelledby="label1" checked type="radio" value="Pay Online" name="payment" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
                         <div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
                     </div>
-                    <label id="label1" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">On</label>
+                    <label id="label1" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Pay Online</label>
                 </div>
                 <!-- Code block ends -->
                 <!-- Code block starts -->
                 <div class="flex items-center ml-6">
                     <div class="bg-white dark:bg-gray-100 rounded-full w-4 h-4 flex flex-shrink-0 justify-center items-center relative">
-                        <input aria-labelledby="label2" type="radio" value="cash" name="payment" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
+                        <input aria-labelledby="label2" type="radio" value="Payment on delivery" name="payment" class="checkbox appearance-none focus:opacity-100 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none border rounded-full border-gray-400 absolute cursor-pointer w-full h-full checked:border-none" />
                         <div class="check-icon hidden border-4 border-indigo-700 rounded-full w-full h-full z-1"></div>
                     </div>
-                    <label id="label2" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Off</label>
+                    <label id="label2" class="ml-2 text-sm leading-4 font-normal text-gray-800 dark:text-gray-100">Payment on delivery</label>
                 </div>
                 <!-- Code block ends -->
                 <style>
@@ -114,7 +114,14 @@
                     }
                 </style>
             </div>
-        
+
+                @foreach ($product as $item)
+                <input type="hidden" name="product_id" value="{{ $item['tcin']}}">
+                <input type="hidden" name="name" value="{{ $item['item']['product_description']['title'] }}">
+                <input type="hidden" name="price" value="{{ $item['price']['current_retail'] }}">
+                <input type="hidden" name="category" value="{{ $item['item']['product_classification']['product_type_name'] }}">
+                <input type="hidden" name="gallery" value="{{ $item['item']['enrichment']['images']['primary_image_url'] }}">
+                @endforeach
                     <button type="submit" class="focus:outline-none focus:ring-2 dark:bg-gray-800 dark:text-white focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-2 focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-gray-800">Proceed to payment</button>
                     </form>
                     <div class="mt-4 flex justify-start items-center w-full">
@@ -129,7 +136,7 @@
                     <div class="flex mt-7 flex-col items-end w-full space-y-6">
                         <div class="flex justify-between w-full items-center">
                             <p class="text-lg dark:text-gray-300 leading-4 text-gray-600">Total items</p>
-                            <p class="text-lg dark:text-gray-300 font-semibold leading-4 text-gray-600">20</p>
+                            <p class="text-lg dark:text-gray-300 font-semibold leading-4 text-gray-600">{{ $count }}</p>
                         </div>
                         <div class="flex justify-between w-full items-center">
                             <p class="text-lg dark:text-gray-300 leading-4 text-gray-600">Total Charges</p>
@@ -137,16 +144,12 @@
                         </div>
                         <div class="flex justify-between w-full items-center">
                             <p class="text-lg dark:text-gray-300 leading-4 text-gray-600">Shipping charges</p>
-                            <p class="text-lg dark:text-gray-300 font-semibold leading-4 text-gray-600">$90</p>
-                        </div>
-                        <div class="flex justify-between w-full items-center">
-                            <p class="text-lg dark:text-gray-300 leading-4 text-gray-600">Sub total</p>
-                            <p class="text-lg dark:text-gray-300 font-semibold leading-4 text-gray-600">$3520</p>
+                            <p class="text-lg dark:text-gray-300 font-semibold leading-4 text-gray-600">Free</p>
                         </div>
                     </div>
                     <div class="flex justify-between w-full items-center mt-32">
-                        <p class="text-xl dark:text-white font-semibold leading-4 text-gray-800">Estimated Total</p>
-                        <p class="text-lg dark:text-white font-semibold leading-4 text-gray-800">$2900</p>
+                        <p class="text-xl dark:text-white font-semibold leading-4 text-gray-800">Total</p>
+                        <p class="text-lg dark:text-white font-semibold leading-4 text-gray-800">${{ $total }}</p>
                     </div>
                 </div>
             </div>

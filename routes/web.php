@@ -8,7 +8,7 @@ use App\Http\Controllers\ProductController;
 
 
 // ROUTES RELATED TO PRODUCTS
-Route::get('/home', 'App\Http\Controllers\featuredController@index');
+Route::get('/', 'App\Http\Controllers\featuredController@index');
 
 Route::get('/item/{tcin}/{store_id}',[
     'uses' => 'App\Http\Controllers\DetailsController@getInfo',
@@ -63,6 +63,8 @@ Route::get('/cart', [ProductController::class, 'cartList']);
 Route::get('ordernow',[ProductController::class, 'orderNow']);
 
 Route::post('orderplace',[ProductController::class, 'orderPlace']);
+
+Route::get('myorders',[ProductController::class, 'myOrders']);
 
 Route::get('/success', function () {
     return view('success');

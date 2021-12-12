@@ -91,14 +91,37 @@ class ProductController extends Controller
          
         //  return $products = DB::table('products')
         //  ->sum('products.price');
+         $products = Product::all();
+
+         foreach($products as $product):
+            $tcin = $product['product_id'];
+            $name=$product['name'];
+            $price=$product['price'];
+            $category=$product['category'];
+            $gallery=$product['gallery'];
+            $user_id=$product['user_id'];
+        endforeach;
+
+
 
           $total = $products = DB::table('products')
           ->where('products.user_id',$userId)
           ->sum('price');
         //return $products;
 
+        $count = Product::where('products.user_id',$userId)->count();
+        
         return view('ordernow',[
-            'total'=>$total,]);
+            'total'=>$total,
+            'count' =>$count,
+            'product'=> $product,
+            'tcin' => $tcin,
+            'name' => $name,
+            'price' => $price,
+            'category' => $category,
+            'gallery' => $gallery,
+            'user_id' => $user_id,
+        ]);
      }
 
      function orderPlace(Request $req){
@@ -107,6 +130,10 @@ class ProductController extends Controller
         foreach($allCart as $cart){
             $order = new Order;
             $order->product_id=$cart['product_id'];
+            $order->name=$cart['name'];
+            $order->price=$cart['price'];
+            $order->category=$cart['category'];
+            $order->gallery=$cart['gallery'];
             $order->user_id=$cart['user_id'];
             $order->status="pending";
             $order->payment_method=$req->payment;
@@ -115,7 +142,57 @@ class ProductController extends Controller
             $order->save();
             Product::where('user_id',$userId)->delete();
         }
+        
          $req->input();
          return redirect('/success');
+     }
+
+     
+     function myOrders(){
+
+        $userId=Session::get('user')['id'];
+        
+        //get everything from the cart
+        //  return $products = DB::table('products')
+        //  ->sum('products.price');
+         
+        //  return $products = DB::table('products')
+        //  ->sum('products.price');
+         $orders = Order::all();
+
+         foreach($orders as $order):
+            $name=$order['name'];
+            $price=$order['price'];
+            $category=$order['category'];
+            $gallery=$order['gallery'];
+            $user_id=$order['user_id'];
+        endforeach;
+
+
+
+          $orders = DB::table('orders')
+          ->where('orders.user_id',$userId)
+          ->get();
+        //return $products;
+
+
+
+        return view('myorders',[
+            'orders' => $orders,
+            'name' => $name,
+            'price' => $price,
+            'category' => $category,
+            'gallery' => $gallery,
+            'user_id' => $user_id,
+        ]);
+
+
+        //  $orders = DB::table('orders')
+        //   ->join('products', 'orders.product_id', '=', 'products.id')
+        //   ->where('orders.user_id',$userId)
+        //   ->get();
+
+        //   return view('myorders',[
+        //     'orders'=>$orders,]);
      }
 }

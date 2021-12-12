@@ -13,7 +13,7 @@ if(Session::has('user'))
 
         <title>Market</title>
 
-        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         @livewireStyles
     </head>
@@ -26,10 +26,10 @@ if(Session::has('user'))
             <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between px-4 py-6">
                 <ul class="flex flex-col md:flex-row items-center">
                     <li>
-                        <a href="{{ url('home') }}" class="text-white">Market</a>
+                        <a href="{{ url('/') }}" class="text-white">Market</a>
                     </li>
                     <li class="md:ml-16 mt-3 md:mt-0">
-                        <a href="{{ url('home') }}" class="text-white">Home</a>
+                        <a href="{{ url('/') }}" class="text-white">Home</a>
                     </li>
                     <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{{ url('cart') }}" class="text-white">Cart</a>
@@ -46,6 +46,9 @@ if(Session::has('user'))
                         <a href="{{ url('login') }}" class="text-white">Log In</a>
                     </li>
                     @endif
+                    <li class="md:ml-6 mt-3 md:mt-0">
+                        <a href="{{ url('register') }}" class="text-white">Sign Up</a>
+                    </li>
                     {{-- <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{{ url('stores') }}" class="text-white">Find Stores</a>
                     </li> --}}

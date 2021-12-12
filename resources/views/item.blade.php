@@ -35,7 +35,7 @@
                     $detail = str_replace( array("<B>", "</B>", "<br />"), '', $itemDetails['item']['product_description']['bullet_descriptions']);  
                     @endphp
                     @foreach ($detail as $bulletPoints)
-                    <p class="text-base leading-4 mt-7 text-gray-600">{{ $bulletPoints }}</p>
+                    <p class="text-base leading-4 mt-7 text-gray-600">{{ $bulletPoints ?? '' }}</p>
                     @endforeach
                     <p class="md:w-96 text-base leading-normal text-gray-600 font-bold mt-4">Returns: {{ $itemDetails['item']['return_policies_guest_message'] ?? ''}}</p>                    
                 </div>
