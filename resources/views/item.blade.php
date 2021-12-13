@@ -15,6 +15,8 @@
             <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
                 <div class="border-b border-gray-200 pb-6">
                     <p class="text-sm leading-none text-gray-600 ">{{ $itemDetails['item']['product_classification']['product_type_name'] }}</p>
+                    <span class="text-sm leading-none text-gray-600 pt-8">{{ $itemDetails['taxonomy']['breadcrumbs']['1']['name'] }} <i class="fas fa-chevron-right"></i></span>
+                    <span class="text-sm leading-none text-gray-600 pt-8">{{ $itemDetails['taxonomy']['breadcrumbs']['2']['name'] }}</span>
                     <p class="lg:text-4xl text-4xl font-semibold lg:leading-relaxed leading-relaxed text-gray-800 dark:text-white mt-8">{{ $itemDetails['item']['product_description']['title'] }}</p>
                     <p class="text-red-600 lg:text-2xl texl-2xl font-semibold my-6">{{ $itemDetails['price']['formatted_current_price'] }}</p>
                 </div>
@@ -22,7 +24,7 @@
                     @csrf
                     <input type="hidden" name="product_id" value="{{ $itemDetails['tcin']}}">
                     <input type="hidden" name="name" value="{{ $itemDetails['item']['product_description']['title'] }}">
-                    <input type="hidden" name="price" value="{{ $itemDetails['price']['current_retail'] }}">
+                    <input type="hidden" name="price" value="{{ $itemDetails['price']['current_retail'] ?? $itemDetails['price']['current_retail_min'] }}">
                     <input type="hidden" name="category" value="{{ $itemDetails['item']['product_classification']['product_type_name'] }}">
                     <input type="hidden" name="gallery" value="{{ $itemDetails['item']['enrichment']['images']['primary_image_url'] }}">
                          <button class="dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700 focus:outline-none">
@@ -49,7 +51,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             @foreach ($Recommended as $recommendedItems)
                   <div class="mt-8">
-                <a href="{!! route('item', ['tcin'=>$recommendedItems['tcin'], 'store_id'=>$itemDetails['fulfillment']['store_options']['0']['location_id']]) !!}">
+                <a href="{!! route('item', ['tcin'=>$recommendedItems['tcin'], 'store_id'=>$itemDetails['fulfillment']['store_options']['0']['location_id'] ?? '911']) !!}">
                     <img src="{{ $recommendedItems['primary_image_url'] }}" alt="" class="hover:opacity-75 transition ease-in-out duration-150">
                 </a>
                 <div class="mt-2">
