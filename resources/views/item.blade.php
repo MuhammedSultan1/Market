@@ -16,7 +16,11 @@
                 <div class="border-b border-gray-200 pb-6">
                     <p class="text-sm leading-none text-gray-600 ">{{ $itemDetails['item']['product_classification']['product_type_name'] }}</p>
                     <span class="text-sm leading-none text-gray-600 pt-8">{{ $itemDetails['taxonomy']['breadcrumbs']['1']['name'] }} <i class="fas fa-chevron-right"></i></span>
-                    <span class="text-sm leading-none text-gray-600 pt-8">{{ $itemDetails['taxonomy']['breadcrumbs']['2']['name'] }}</span>
+                    <span class="text-sm leading-none text-gray-600 pt-8">
+                        <a href="{!! route('subCategory', ['subCategory'=> $subCategory]) !!}"> 
+                            {{ $itemDetails['taxonomy']['breadcrumbs']['2']['name'] }} 
+                        </a>
+                    </span>
                     <p class="lg:text-4xl text-4xl font-semibold lg:leading-relaxed leading-relaxed text-gray-800 dark:text-white mt-8">{{ $itemDetails['item']['product_description']['title'] }}</p>
                     <p class="text-red-600 lg:text-2xl texl-2xl font-semibold my-6">{{ $itemDetails['price']['formatted_current_price'] }}</p>
                 </div>

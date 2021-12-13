@@ -49,11 +49,14 @@ class DetailsController extends Controller
 
         $availability = '';
 
+        $subCategory = $itemDetails['taxonomy']['breadcrumbs']['2']['node_id'];
+
         return view('item',[
             'itemDetails' => $itemDetails,
             'Recommended' => $Recommended,
             'Reviews' => $Reviews,
             'availability' => $availability,
+            'subCategory' => $subCategory,
         ]);
     }
         

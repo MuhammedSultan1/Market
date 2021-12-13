@@ -20,6 +20,11 @@ Route::get('/category/{category}',[
     'as'   => 'category'
 ]);
 
+Route::get('/category/{subCategory}',[
+    'uses' => 'App\Http\Controllers\DetailsController@getInfo',
+    'as'   => 'subCategory'
+]);
+
 //Route::get('/stores', 'App\Http\Controllers\featuredController@getLocation');
 
 Route::get('/stores', function () {
