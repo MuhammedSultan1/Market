@@ -82,7 +82,7 @@
                     </svg>
                     <p class="text-5xl text-white dark:text-white font-semibold leading-5 mt-6 mb-6">Top Deals</p>
                     <p class="font-normal text-base leading-6 dark:text-gray-300 text-white my-4">Check out our best deals.</p>
-                    <a class="cursor-pointer text-base dark:text-white leading-4 dark:border-white font-medium text-white border-b-2 border-gray-800 hover:text-gray-50">Learn More</a>
+                    <a href="{!! route('category', ['category'=>'4xw74']) !!}" class="cursor-pointer font-medium text-white border-b-2 border-white hover:text-gray-50">Learn More</a>
                 </div>
 
                     <!-- Clearance Grid Card -->
@@ -100,7 +100,7 @@
                     </svg>
                     <p class="text-5xl text-gray-800 dark:text-white font-semibold leading-5 mt-6 mb-6">Clearance</p>
                     <p class="font-normal text-base leading-6 dark:text-gray-300 text-gray-800 my-4">View our products that are on clearance.</p>
-                    <a class="cursor-pointer text-base dark:text-white leading-4 dark:border-white font-medium text-gray-800 border-b-2 border-gray-800 hover:text-gray-600">Learn More</a>
+                    <a href="{!! route('category', ['category'=>'5q0ga']) !!}" class="cursor-pointer text-base dark:text-white leading-4 dark:border-white font-medium text-gray-800 border-b-2 border-gray-800 hover:text-gray-600">Learn More</a>
                 </div>
             </div>
         </div>

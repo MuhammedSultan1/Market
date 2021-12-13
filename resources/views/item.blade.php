@@ -14,13 +14,25 @@
             </div>
             <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
                 <div class="border-b border-gray-200 pb-6">
-                    <p class="text-sm leading-none text-gray-600 ">{{ $itemDetails['item']['product_classification']['product_type_name'] }}</p>
+                    <p class="text-sm leading-none text-gray-600 pb-4">{{ $itemDetails['item']['product_classification']['product_type_name'] }}</p>
                     <span class="text-sm leading-none text-gray-600 pt-8">{{ $itemDetails['taxonomy']['breadcrumbs']['1']['name'] }} <i class="fas fa-chevron-right"></i></span>
-                    <span class="text-sm leading-none text-gray-600 pt-8">
+                    <span class="text-sm leading-none text-yellow-600 pt-8">
                         <a href="{!! route('subCategory', ['subCategory'=> $subCategory]) !!}"> 
                             {{ $itemDetails['taxonomy']['breadcrumbs']['2']['name'] }} 
                         </a>
                     </span>
+                     <div class="text-sm leading-none text-gray-600 pt-8">{{ $itemDetails['ratings_and_reviews']['statistics']['question_count'] ?? '' }} Questions</div>
+                     <div class="text-sm leading-none text-gray-600 pt-8">
+                         Rating:
+                          @for ($i = 0; $i < 5; $i++)
+                            @if ($i < $itemDetails['ratings_and_reviews']['statistics']['rating']['average'] ?? '')
+                                <i class="fas fa-star text-yellow-400"></i>
+                            @else
+                                <i class="far fa-star"></i>
+                            @endif
+                            @endfor
+                        <span class="text-sm leading-none text-gray-600 underline">{{ $itemDetails['ratings_and_reviews']['statistics']['rating']['count'] ?? '' }}</span>
+                     </div>
                     <p class="lg:text-4xl text-4xl font-semibold lg:leading-relaxed leading-relaxed text-gray-800 dark:text-white mt-8">{{ $itemDetails['item']['product_description']['title'] }}</p>
                     <p class="text-red-600 lg:text-2xl texl-2xl font-semibold my-6">{{ $itemDetails['price']['formatted_current_price'] }}</p>
                 </div>
