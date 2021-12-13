@@ -14,16 +14,13 @@
                 <div class="mt-2">
                     <a href="" class="text-lg mt-2 hover:text-gray:300">{{ $item['item']['product_description']['title'] }}</a>
                     <div class="flex items-center text-gray-500">
-                        {{-- <span class="ml-1">Ratings: {{ $item['ratings_and_reviews']['statistics']['rating']['count'] }}</span> --}}
+                        <span class="ml-1 text-red-600"> ${{ $item['price']['current_retail'] }}</span>
                         <span class="mx-2">|</span>
                         <span class="text-green-600"> 
                         @php
                         $availability = str_replace("_", ' ', $item['fulfillment']['store_options']['0']['in_store_only']['availability_status']);  
                         @endphp
                         {{ $availability }} </span>
-                    </div>
-                    <div class="text-red-600">
-                    ${{ $item['price']['current_retail'] }}
                     </div>
                 </div>
             </div>
@@ -38,7 +35,7 @@
     <div class="featured-items">
         <h2 class="uppercase tracking-wider text-gray-900 text-4xl font-semibold text-center">Featured Categories</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {{-- @foreach ($Categories as $Category)
+            @foreach ($Categories as $Category)
                   <div class="mt-8">
                        @php
                       $catID = str_replace("target://landing/custom?category=", '', $Category['actions']['0']['target']);
@@ -53,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            @endforeach --}}
+            @endforeach
         </div>
     </div>
 </div>

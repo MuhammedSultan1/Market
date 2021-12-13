@@ -31,19 +31,6 @@ Route::get('/stores', function () {
     return view('stores');
 });
 
-Route::get('/pants', function () {
-    return view('index');
-});
-
-Route::get('/shirts', function () {
-    return view('shirts');
-});
-
-Route::get('/shoes', function () {
-    return view('shoes');
-});
-
-
 
 // USER AUTHENTICATION ROUTES
 Route::get('/login', function () {

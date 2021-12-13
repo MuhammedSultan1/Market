@@ -16,7 +16,7 @@
                 <div class="border-b border-gray-200 pb-6">
                     <p class="text-sm leading-none text-gray-600 pb-4">{{ $itemDetails['item']['product_classification']['product_type_name'] }}</p>
                     <span class="text-sm leading-none text-gray-600 pt-8">{{ $itemDetails['taxonomy']['breadcrumbs']['1']['name'] }} <i class="fas fa-chevron-right"></i></span>
-                    <span class="text-sm leading-none text-yellow-600 pt-8">
+                    <span class="text-sm leading-none text-yellow-600 hover:text-red-600 transition duration-500 ease-in-out pt-8">
                         <a href="{!! route('subCategory', ['subCategory'=> $subCategory]) !!}"> 
                             {{ $itemDetails['taxonomy']['breadcrumbs']['2']['name'] }} 
                         </a>
@@ -72,8 +72,8 @@
                 </a>
                 <div class="mt-2">
                     <a href="" class="text-lg mt-2 hover:text-gray:300">{{ $recommendedItems['title'] }}</a>
-                    <div class="flex items-center text-gray-500">
-                        <span class="ml-1">Ratings: {{ $item['ratings_and_reviews']['statistics']['rating']['count'] ?? ''}}</span>
+                    <div class="flex items-center text-gray-500">  
+                    <span class="ml-1">Ratings: {{ $item['ratings_and_reviews']['statistics']['rating']['count'] ?? ''}}</span>
                         <span class="mx-2">|</span>
                         <span class="text-green-600"> 
                         @php
@@ -83,7 +83,7 @@
                         @endphp
                         {{ $availability }} </span>
                     </div>
-                    <div class="text-red-600">
+                 <div class="text-red-600">
                     {{ $recommendedItems['price']['formatted_current_price'] }}
                     </div>
                 </div>
