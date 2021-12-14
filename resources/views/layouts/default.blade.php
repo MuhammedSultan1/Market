@@ -49,6 +49,9 @@ if(Session::has('user'))
                     <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{{ url('register') }}" class="text-white">Sign Up</a>
                     </li>
+                    <li class="md:ml-6 mt-3 md:mt-0">
+                        <a href="{{ url('about') }}" class="text-white">About This Project</a>
+                    </li>
                     {{-- <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{{ url('stores') }}" class="text-white">Find Stores</a>
                     </li> --}}
@@ -66,16 +69,16 @@ if(Session::has('user'))
             <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between px-4 py-4">
                 <ul class="flex flex-col md:flex-row items-center">
                      <li class="md:ml-16 mt-3 md:mt-0">
-                        <a href="{{ url('home') }}" class="text-gray-500">You are shopping at:</a>
+                        <a href="{{ url('stores') }}" class="text-gray-500">You are shopping at:</a>
                     </li>
                     <li class="md:ml-6 mt-3 md:mt-0">
-                        <a href="{{ url('home') }}" class="text-gray-500">Clearance</a>
+                        <a href="{!! route('category', ['category'=>'5q0ga']) !!}" class="text-gray-500">Clearance</a>
                     </li>
                     <li class="md:ml-6 mt-3 md:mt-0">
-                        <a href="{{ url('home') }}" class="text-gray-500">Top Deals</a>
+                        <a href="{!! route('category', ['category'=>'4xw74']) !!}" class="text-gray-500">Top Deals</a>
                     </li>
                     <li class="md:ml-6 mt-3 md:mt-0">
-                        <a href="{{ url('wishlist') }}" class="text-gray-500">Gift Cards</a>
+                        <a href="{!! route('category', ['category'=>'5xsxu']) !!}" class="text-gray-500">Gift Cards</a>
                     </li>
                     <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{{ url('stores') }}" class="text-gray-500">Find Stores</a>

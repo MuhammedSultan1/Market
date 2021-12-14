@@ -31,6 +31,10 @@ Route::get('/stores', function () {
     return view('stores');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 
 // USER AUTHENTICATION ROUTES
 Route::get('/login', function () {
