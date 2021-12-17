@@ -84,13 +84,7 @@ class ProductController extends Controller
 
      function orderNow(){
         $userId=Session::get('user')['id'];
-        
-        //get everything from the cart
-        //  return $products = DB::table('products')
-        //  ->sum('products.price');
-         
-        //  return $products = DB::table('products')
-        //  ->sum('products.price');
+        //get everything 
          $products = Product::all();
 
          foreach($products as $product):
@@ -107,7 +101,7 @@ class ProductController extends Controller
           $total = $products = DB::table('products')
           ->where('products.user_id',$userId)
           ->sum('price');
-        //return $products;
+
 
         $count = Product::where('products.user_id',$userId)->count();
         
@@ -151,13 +145,7 @@ class ProductController extends Controller
      function myOrders(){
 
         $userId=Session::get('user')['id'];
-        
-        //get everything from the cart
-        //  return $products = DB::table('products')
-        //  ->sum('products.price');
-         
-        //  return $products = DB::table('products')
-        //  ->sum('products.price');
+     //get everything 
          $orders = Order::all();
 
          foreach($orders as $order):
@@ -173,9 +161,6 @@ class ProductController extends Controller
           $orders = DB::table('orders')
           ->where('orders.user_id',$userId)
           ->get();
-        //return $products;
-
-
 
         return view('myorders',[
             'orders' => $orders,
@@ -186,13 +171,5 @@ class ProductController extends Controller
             'user_id' => $user_id,
         ]);
 
-
-        //  $orders = DB::table('orders')
-        //   ->join('products', 'orders.product_id', '=', 'products.id')
-        //   ->where('orders.user_id',$userId)
-        //   ->get();
-
-        //   return view('myorders',[
-        //     'orders'=>$orders,]);
      }
 }

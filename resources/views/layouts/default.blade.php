@@ -38,6 +38,9 @@ if(Session::has('user'))
                     <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{{ url('logout') }}" class="text-white">Log Out</a>
                     </li>
+                    <li class="md:ml-6 mt-3 md:mt-0">
+                        <a href="{{ url('myorders') }}" class="text-white">My Orders</a>
+                    </li>
                        <li class="md:ml-6 mt-3 md:mt-0">
                         <span class="text-white">{{ Session::get('user')['name'] }}</span>
                     </li>
