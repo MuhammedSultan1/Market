@@ -30,7 +30,7 @@
                             <div role="cell" class="bg-gray-100">
                                 <div class="bg-white p-5 rounded-md relative h-full w-full">
                                     <!-- class="absolute inset-0 object-center object-cover h-full w-full"  -->
-                                    <h1 class="pb-4 text-2xl font-semibold">Account Overview</h1>
+                                    <h1 class="pb-4 text-2xl font-semibold">your ip {{ $clientIP }}</h1>
                                     <div class="my-5">
                                         <div class="flex items-center pb-4 dark:border-gray-700 cursor-pointer w-full space-x-3">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
