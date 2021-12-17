@@ -15,7 +15,7 @@ class featuredController extends Controller
      */
 
     public function getLocation(){
-         $clientIP = Request::ip();
+         $clientIP = request()->ip();
 
          $zipcode = Http::withHeaders([
          'x-rapidapi-host' => 'target1.p.rapidapi.com',
