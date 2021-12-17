@@ -25,11 +25,7 @@ Route::get('/category/{subCategory}',[
     'as'   => 'subCategory'
 ]);
 
-//Route::get('/stores', 'App\Http\Controllers\featuredController@getLocation');
-
-Route::get('/stores', function () {
-    return view('stores');
-});
+Route::get('/stores', 'App\Http\Controllers\featuredController@getLocation');
 
 Route::get('/about', function () {
     return view('about');
