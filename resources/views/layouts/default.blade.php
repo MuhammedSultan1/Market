@@ -13,7 +13,7 @@ if(Session::has('user'))
 
         <title>Market</title>
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         @livewireStyles
     </head>
@@ -55,9 +55,6 @@ if(Session::has('user'))
                     <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{{ url('about') }}" class="text-white">About This Project</a>
                     </li>
-                    {{-- <li class="md:ml-6 mt-3 md:mt-0">
-                        <a href="{{ url('stores') }}" class="text-white">Find Stores</a>
-                    </li> --}}
                 </ul>
                 <livewire:search-dropdown>
             </div>
@@ -72,7 +69,7 @@ if(Session::has('user'))
             <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between px-4 py-4">
                 <ul class="flex flex-col md:flex-row items-center">
                      <li class="md:ml-16 mt-3 md:mt-0">
-                        <a href="{{ url('stores') }}" class="text-gray-500">You are shopping at:</a>
+                        <a href="{{ url('stores') }}" class="text-gray-500">You are shopping at:{{ $clientIP }}</a>
                     </li>
                     <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{!! route('category', ['category'=>'5q0ga']) !!}" class="text-gray-500">Clearance</a>
@@ -131,7 +128,7 @@ if(Session::has('user'))
         </div>
     
         {{-- Footer Ends --}}
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ secure_asset('js/app.js') }}" defer></script>
         @livewireScripts
     </body>
 </html>

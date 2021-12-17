@@ -35,7 +35,7 @@
     </p>
     <h4 class="font-semibold pt-8">Challenges that I faced and how I solved them</h4>
     <p class="pt-4">
-        I was finding it difficult to figure out how to... 
+        I was finding it difficult to...
     </p>
   </div>
 </article>
