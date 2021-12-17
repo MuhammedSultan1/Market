@@ -17,25 +17,24 @@ class featuredController extends Controller
     public function getLocation(){
          $clientIP = \Request::ip();
 
-         $getClientLocation = Http::withHeaders([
+         $zipcode = Http::withHeaders([
          'x-rapidapi-host' => 'target1.p.rapidapi.com',
-         ])->get('https://find-any-ip-address-or-domain-location-world-wide.p.rapidapi.com/iplocation', [
-             'ip' => $clientIP,
+         ])->get('https://ip-geolocation-and-threat-detection.p.rapidapi.com/'.$clientIP, [
              'apikey' => env('RAPID_API_KEY'),
-         ])->json()['zipCode'];
+         ])->json()['location']['postal'];
 
          $storeList = Http::withHeaders([
         'x-rapidapi-host' => 'target1.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
         ])->get('https://target1.p.rapidapi.com/stores/list', [
-           'zipcode' => $getClientLocation,
+           'zipcode' => $zipcode,
         ])->json()['0']['locations'];
 
         dump($storeList);
         
          return view('stores',[
              'clientIP' => $clientIP,
-             'getClientLocation' => $getClientLocation,
+             'zipcode' => $zipcode,
              'storeList' => $storeList,
          ]);
     }
