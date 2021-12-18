@@ -50,7 +50,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </div>
-                                            <h4 class="text-md text-green-500 pl-4">Open Today: {{ \Carbon\Carbon::parse($store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'])->('h:i A') }} - {{ \Carbon\Carbon::parse($store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'])->('h:i P') }}</h4>
+                                            <h4 class="text-md text-green-500 pl-4">Open Today: {{ Carbon()->format($store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'])->('h:i A') }} - {{ Carbon()->format($store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'])->('h:i P') }}</h4>
                                         </div>
                                         <div class="flex items-center pb-4 cursor-pointer w-full">
                                             <div>
