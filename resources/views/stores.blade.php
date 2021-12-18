@@ -27,8 +27,8 @@
                     </div>
                     <div class="px-6 xl:px-0">
                         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pb-6 gap-8">
+                            @foreach ($storeList as $store)
                             <div role="cell" class="bg-gray-100">
-                                @foreach ($storeList as $store)
                                 <div class="bg-white p-5 rounded-md relative h-full w-full">
                                     <!-- class="absolute inset-0 object-center object-cover h-full w-full"  -->
                                     <h1 class="pb-2 text-4xl font-semibold">{{ $store['location_names']['0']['name'] ?? 'Near You' }}</h1>
@@ -56,8 +56,8 @@
                                         </div>
                                     </a>
                                 </div>
-                                    @endforeach
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
