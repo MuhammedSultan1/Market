@@ -100,7 +100,7 @@ class featuredController extends Controller
         $closingTime = date('h:i A', strtotime($endTime));
         endforeach;
 
-        dump($storeInfo);
+        dump($hours);
 
          return view('stores-info',[
              'storeInfo' => $storeInfo,
