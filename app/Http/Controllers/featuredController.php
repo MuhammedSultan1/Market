@@ -39,8 +39,8 @@ class featuredController extends Controller
           $zipcode = Http::withHeaders([
           'x-rapidapi-host' => 'target1.p.rapidapi.com',
           'x-rapidapi-key' => env('RAPID_API_KEY'),
-          ])->get('https://ip-geolocation-and-threat-detection.p.rapidapi.com/'.$clientIp, [
-          ])->json()['location']['postal'];
+          ])->get('https://get-ip-address-full-information.p.rapidapi.com/tn/ipgeo/'.$clientIp, [
+          ])->json()['zip'];
 
           $storeList = Http::withHeaders([
          'x-rapidapi-host' => 'target1.p.rapidapi.com',
