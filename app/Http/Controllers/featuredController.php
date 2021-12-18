@@ -36,25 +36,25 @@ class featuredController extends Controller
 
             dump($clientIp);
         
-        //  $zipcode = Http::withHeaders([
-        //  'x-rapidapi-host' => 'target1.p.rapidapi.com',
-        //  'x-rapidapi-key' => env('RAPID_API_KEY'),
-        //  ])->get('https://ip-geolocation-and-threat-detection.p.rapidapi.com/'.$clientIP, [
-        //  ])->json()['location']['postal'];
+          $zipcode = Http::withHeaders([
+          'x-rapidapi-host' => 'target1.p.rapidapi.com',
+          'x-rapidapi-key' => env('RAPID_API_KEY'),
+          ])->get('https://ip-geolocation-and-threat-detection.p.rapidapi.com/'.$clientIp, [
+          ])->json()['location']['postal'];
 
-        //  $storeList = Http::withHeaders([
-        // 'x-rapidapi-host' => 'target1.p.rapidapi.com',
-        // 'x-rapidapi-key' => env('RAPID_API_KEY'),
-        // ])->get('https://target1.p.rapidapi.com/stores/list', [
-        //    'zipcode' => $zipcode,
-        // ])->json()['0']['locations'];
+          $storeList = Http::withHeaders([
+         'x-rapidapi-host' => 'target1.p.rapidapi.com',
+         'x-rapidapi-key' => env('RAPID_API_KEY'),
+         ])->get('https://target1.p.rapidapi.com/stores/list', [
+            'zipcode' => $zipcode,
+         ])->json()['0']['locations'];
 
 
         
          return view('stores',[
-             'clientIP' => $clientIP,
-            //  'zipcode' => $zipcode,
-            //  'storeList' => $storeList,
+             'clientIp' => $clientIp,
+             'zipcode' => $zipcode,
+             'storeList' => $storeList,
          ]);
     }
 
