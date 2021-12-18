@@ -25,7 +25,15 @@ Route::get('/category/{subCategory}',[
     'as'   => 'subCategory'
 ]);
 
+// ROUTES RELATED TO STORES
+
 Route::get('/stores', 'App\Http\Controllers\featuredController@getLocation');
+
+Route::get('/store-info/{location_id}',[
+    'uses' => 'App\Http\Controllers\featuredController@getStoreInfo',
+    'as'   => 'store-info'
+]);
+
 
 Route::get('/about', function () {
     return view('about');

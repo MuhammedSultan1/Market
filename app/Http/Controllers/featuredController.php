@@ -60,6 +60,8 @@ class featuredController extends Controller
                 $phoneNumber = $store['contact_information']['telephone_number'];
 
                 $openStatus = $store['status'];
+
+                $location_id = $store['location_id'];
             endforeach;
         
             
@@ -73,6 +75,23 @@ class featuredController extends Controller
             'closingTime' => $closingTime,
             'phoneNumber' => $phoneNumber,
             'openStatus' => $openStatus,
+            'location_id' => $location_id,
+         ]);
+    }
+
+    public function getStoreInfo($location_id){
+
+        $storeInfo = Http::withHeaders([
+        'x-rapidapi-host' => 'target1.p.rapidapi.com',
+        'x-rapidapi-key' => env('RAPID_API_KEY'),
+        ])->get('https://target1.p.rapidapi.com/stores/get-details', [
+            'location_id' => $location_id,
+        ])->json()['0'];
+
+        dump($storeInfo);
+
+         return view('stores-info',[
+             'storeInfo' => $storeInfo,
          ]);
     }
 
