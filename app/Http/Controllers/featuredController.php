@@ -88,10 +88,30 @@ class featuredController extends Controller
             'location_id' => $location_id,
         ])->json()['0'];
 
+        foreach($storeInfo as $openHours):
+            $hours = $openHours['rolling_operating_hours']['regular_event_hours']['days'];
+        endforeach;
+
+        foreach($hours as $openingAndClosingTime):
+        $beginTime = $openingAndClosingTime['hours']['0']['begin_time'];
+        $openingTime = date('h:i A', strtotime($beginTime));
+        
+        $endTime = $openingAndClosingTime['hours']['0']['end_time'];
+        $closingTime = date('h:i A', strtotime($endTime));
+        endforeach;
+
         dump($storeInfo);
 
          return view('stores-info',[
              'storeInfo' => $storeInfo,
+             'location_id' => $location_id,
+             'openHours' => $openHours,
+             'hours' => $hours,
+             'openingAndClosingTime' => $openingAndClosingTime,
+             'beginTime' => $beginTime,
+             'openingTime' => $openingTime,
+             'endTime' => $endTime,
+             'closingTime' => $closingTime,
          ]);
     }
 
