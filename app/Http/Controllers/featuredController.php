@@ -93,7 +93,7 @@ class featuredController extends Controller
         json_decode(json_encode($storeInfo),true);
 
          foreach($storeInfo as $openHours):
-            $hours = $openHours['rolling_operating_hours'];
+            $hours = $openHours['rolling_operating_hours']['regular_event_hours']['days'];
              if(isset($hours)){
                 dump($hours);
              }else{
