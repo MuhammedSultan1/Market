@@ -34,10 +34,15 @@ class featuredController extends Controller
                 $clientIp = $remote;
             }
 
-            dump($clientIp);
+            //dump($clientIp);
         
           $zipcode = Http::withHeaders([
-          ])->get('https://api.ipgeolocation.io/ipgeo?apiKey='.env('RAPID_API_KEY').'&ip='.$clientIp.'&fields=zipcode',)->json()['zipcode'];
+            'x-rapidapi-host' => 'target1.p.rapidapi.com',
+            'x-rapidapi-key' => env('RAPID_API_KEY'),])
+            ->get('https://ip-geolocation-and-threat-detection.p.rapidapi.com/'.$clientIp)
+            ->json()['location']['postal'];
+
+            dump($zipcode);
 
           $storeList = Http::withHeaders([
          'x-rapidapi-host' => 'target1.p.rapidapi.com',
