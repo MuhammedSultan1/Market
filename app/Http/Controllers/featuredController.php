@@ -89,15 +89,15 @@ class featuredController extends Controller
         ])->json()['0'];
 
         foreach($storeInfo as $openHours):
-            $hours = $openHours['rolling_operating_hours']['regular_event_hours'];
+            $hours = $openHours['rolling_operating_hours'];
         endforeach;
         dump($hours);
 
         foreach($hours as $openingAndClosingTime):
-        $beginTime = $openingAndClosingTime['days']['hours']['0']['begin_time'];
+        $beginTime = $openingAndClosingTime['regular_event_hours']['days']['hours']['0']['begin_time'];
         $openingTime = date('h:i A', strtotime($beginTime));
         
-        $endTime = $openingAndClosingTime['days']['hours']['0']['end_time'];
+        $endTime = $openingAndClosingTime['regular_event_hours']['days']['hours']['0']['end_time'];
         $closingTime = date('h:i A', strtotime($endTime));
         endforeach;
 
