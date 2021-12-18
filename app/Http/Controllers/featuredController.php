@@ -88,21 +88,25 @@ class featuredController extends Controller
             'location_id' => $location_id,
         ])->json()['0'];
 
+        json_decode($storeInfo, true);
+        
+         foreach($storeInfo as $openHours):
+             $hours = $openHours['rolling_operating_hours'];
+         endforeach;
+
+         dump($hours);
+         
+        //  foreach($storeInfo as $openHours => $hours):
+        //      $beginTime = $hours['rolling_operating_hours']['regular_event_hours']['days'];
+        //      $openingTime = date('h:i A', strtotime($beginTime));
+
+        //      $endTime = $hours->rolling_operating_hours->regular_event_hours->days->hours['0']->end_time;
+        //      $closingTime = date('h:i A', strtotime($endTime));
+        //  endforeach;
         // foreach($storeInfo as $openHours):
-        //     $hours = $openHours['rolling_operating_hours'];
-        // endforeach;
-
-        // foreach($storeInfo as $openHours => $hours):
-        //     $beginTime = $hours['rolling_operating_hours']['regular_event_hours']['days'];
-        //     $openingTime = date('h:i A', strtotime($beginTime));
-
-        //     $endTime = $hours->rolling_operating_hours->regular_event_hours->days->hours['0']->end_time;
-        //     $closingTime = date('h:i A', strtotime($endTime));
-        // endforeach;
-        foreach($storeInfo as $openHours):
-        $hours = $openHours['rolling_operating_hours']['regular_event_hours']['days'];
-        endforeach;  
-        dump($hours);
+        // $hours = $openHours['rolling_operating_hours']['regular_event_hours']['days'];
+        // endforeach;  
+        
 
         // foreach($hours as $openingAndClosingTime):
         // $beginTime = $openingAndClosingTime['regular_event_hours']['days']['hours']['0']['begin_time'];
