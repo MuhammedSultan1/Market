@@ -92,14 +92,16 @@ class featuredController extends Controller
         //     $hours = $openHours['rolling_operating_hours'];
         // endforeach;
 
-        foreach($storeInfo as $openHours => $hours):
-            $beginTime = $hours->rolling_operating_hours->regular_event_hours->days->hours['0']->begin_time;
-            $openingTime = date('h:i A', strtotime($beginTime));
+        // foreach($storeInfo as $openHours => $hours):
+        //     $beginTime = $hours['rolling_operating_hours']['regular_event_hours']['days'];
+        //     $openingTime = date('h:i A', strtotime($beginTime));
 
-            $endTime = $hours->rolling_operating_hours->regular_event_hours->days->hours['0']->end_time;
-            $closingTime = date('h:i A', strtotime($endTime));
-        endforeach;
-
+        //     $endTime = $hours->rolling_operating_hours->regular_event_hours->days->hours['0']->end_time;
+        //     $closingTime = date('h:i A', strtotime($endTime));
+        // endforeach;
+        foreach($storeInfo as $openHours):
+        $hours = $openHours['rolling_operating_hours']['regular_event_hours']['days'];
+        endforeach;  
         dump($hours);
 
         // foreach($hours as $openingAndClosingTime):
