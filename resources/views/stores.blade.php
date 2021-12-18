@@ -32,14 +32,11 @@
                                 <div class="bg-white p-5 rounded-md relative h-full w-full">
                                     <!-- class="absolute inset-0 object-center object-cover h-full w-full"  -->
                                     <h1 class="pb-2 text-4xl font-semibold">{{ $location['location_names']['0']['name'] ?? 'Near You' }}</h1>
-                                    @php
-                                    if($openStatus === "Open"){
-                                        <h2 class="text-green-500 text-2xl">{{ $openStatus }}</h2>
-                                    }    
-                                    else {
-                                        <h2 class="text-red-500 text-2xl">{{ $openStatus }}</h2>
-                                    }
-                                    @endphp
+                                    @if ($openStatus === "Open")    
+                                   <h2 class="text-green-500 text-2xl">{{ $openStatus }}</h2>
+                                   @else
+                                   <h2 class="text-red-500 text-2xl">{{ $openStatus }}</h2>
+                                   @endif
                                     <div class="my-5">
                                         <div class="flex items-center pb-4 cursor-pointer w-full space-x-3">
                                             <h4 class="text-md text-gray-900">{{ $location['address']['address_line1'] }}, {{ $location['address']['city'] }}, {{ $location['address']['region'] }}, {{ $location['address']['postal_code'] }}</h4>
