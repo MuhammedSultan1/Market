@@ -46,11 +46,27 @@ class featuredController extends Controller
             ])->json()['0']['locations'];
 
             dump($storeList);
+
+
+
+            //storeList variables
+            foreach($storeList as $store):
+                $beginTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'];
+                $openingTime = date('h:i A', strtotime($beginTime));
+
+                $endTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'];
+                $closingTime = date('h:i A', strtotime($endTime));
+            endforeach;
         
+            
          return view('stores',[
              'clientIp' => $clientIp,
              'zipcode' => $zipcode,
              'storeList' => $storeList,
+             'beginTime' => $beginTime,
+             'openingTime' => $openingTime,
+             'endTime' => $endTime,
+            'closingTime' => $closingTime,
          ]);
     }
 
