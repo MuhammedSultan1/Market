@@ -28,39 +28,37 @@
                     <div class="px-6 xl:px-0">
                         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pb-6 gap-8">
                             <div role="cell" class="bg-gray-100">
+                                @foreach ($storeList as $store)
                                 <div class="bg-white p-5 rounded-md relative h-full w-full">
                                     <!-- class="absolute inset-0 object-center object-cover h-full w-full"  -->
                                     <h1 class="pb-4 text-2xl font-semibold"></h1>
                                     <div class="my-5">
-                                        <div class="flex items-center pb-4 dark:border-gray-700 cursor-pointer w-full space-x-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                            </svg>
-                                            <h4 class="text-md text-gray-900 dark:text-gray-100">First time, what do I do next?</h4>
+                                        <div class="flex items-center pb-4 cursor-pointer w-full space-x-3">
+                                            <h1 class="text-gray-900">{{ $store['location_names']['name'] ?? 'Near You' }}</h1>
                                         </div>
-                                        <div class="flex items-center pb-4 dark:border-gray-700 cursor-pointer w-full space-x-3">
+                                        <div class="flex items-center pb-4 cursor-pointer w-full space-x-3">
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </div>
-                                            <h4 class="text-md text-gray-900 dark:text-gray-100">Changing you profile picture and other information</h4>
+                                            <h4 class="text-md text-gray-900">{{ $store['address']['address_line1'] }}, {{ $store['address']['city'] }}, {{ $store['address']['region'] }}, {{ $store['address']['postal_code'] }}</h4>
                                         </div>
-                                        <div class="flex items-center pb-4 dark:border-gray-700 cursor-pointer w-full">
+                                        <div class="flex items-center pb-4 cursor-pointer w-full">
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </div>
-                                            <h4 class="text-md text-gray-900 dark:text-gray-100 pl-4">I didnt get a confirmation email, what should I do next</h4>
+                                            <h4 class="text-md text-green-500 pl-4">Open Today: {{ \Carbon\Carbon::parse($store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'])->('h:i A') }} - {{ \Carbon\Carbon::parse($store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'])->('h:i P') }}</h4>
                                         </div>
-                                        <div class="flex items-center pb-4 dark:border-gray-700 cursor-pointer w-full">
+                                        <div class="flex items-center pb-4 cursor-pointer w-full">
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </div>
-                                            <h4 class="text-md text-gray-900 dark:text-gray-100 pl-4">What is the refund policy if I have to cancel during the month</h4>
+                                            <h4 class="text-md text-gray-900 pl-4">What is the refund policy if I have to cancel during the month</h4>
                                         </div>
                                     </div>
                                     <a class="hover:text-indigo-500 hover:underline absolute bottom-5 text-sm text-indigo-700 font-bold cursor-pointer flex items-center" href="javascript:void(0)">
@@ -75,6 +73,7 @@
                                         </div>
                                     </a>
                                 </div>
+                                    @endforeach
                             </div>
                         </div>
                     </div>
