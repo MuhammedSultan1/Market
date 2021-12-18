@@ -35,21 +35,21 @@ class featuredController extends Controller
             }
 
             //dump($clientIp);
-        
-          $zipcode = Http::withHeaders([
-            'x-rapidapi-host' => 'target1.p.rapidapi.com',
-            'x-rapidapi-key' => env('RAPID_API_KEY'),])
-            ->get('https://ip-geolocation-and-threat-detection.p.rapidapi.com/'.$clientIp)
-            ->json()['location']['postal'];
 
+            // $zipcodeCall = file_get_contents('http://ip-api.com/json/2601:347:c000:a430:b434:8f8:3c73:5eb8');
+            // $zipcode = json_decode($zipcodeCall);
+            
+             //$storeList = Http::withHeaders()->get('http://ip-api.com/json/'.$clientIp,)->json()['zip'];
+            $zipcode = Http::get('http://ip-api.com/json/'.$clientIp)->json()['zip'];
+            
             dump($zipcode);
 
-          $storeList = Http::withHeaders([
-         'x-rapidapi-host' => 'target1.p.rapidapi.com',
-         'x-rapidapi-key' => env('RAPID_API_KEY'),
-         ])->get('https://target1.p.rapidapi.com/stores/list', [
-            'zipcode' => $zipcode,
-         ])->json()['0']['locations'];
+             $storeList = Http::withHeaders([
+            'x-rapidapi-host' => 'target1.p.rapidapi.com',
+            'x-rapidapi-key' => env('RAPID_API_KEY'),
+            ])->get('https://target1.p.rapidapi.com/stores/list', [
+               'zipcode' => $zipcode,
+            ])->json()['0']['locations'];
 
 
         
