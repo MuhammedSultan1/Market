@@ -34,15 +34,9 @@ class featuredController extends Controller
                 $clientIp = $remote;
             }
 
-            //dump($clientIp);
-
-            // $zipcodeCall = file_get_contents('http://ip-api.com/json/2601:347:c000:a430:b434:8f8:3c73:5eb8');
-            // $zipcode = json_decode($zipcodeCall);
-            
-             //$storeList = Http::withHeaders()->get('http://ip-api.com/json/'.$clientIp,)->json()['zip'];
             $zipcode = Http::get('http://ip-api.com/json/'.$clientIp)->json()['zip'];
             
-            dump($zipcode);
+
 
              $storeList = Http::withHeaders([
             'x-rapidapi-host' => 'target1.p.rapidapi.com',
@@ -51,7 +45,7 @@ class featuredController extends Controller
                'zipcode' => $zipcode,
             ])->json()['0']['locations'];
 
-
+            dump($storeList);
         
          return view('stores',[
              'clientIp' => $clientIp,
