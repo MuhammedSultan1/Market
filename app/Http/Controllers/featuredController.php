@@ -88,10 +88,10 @@ class featuredController extends Controller
             'location_id' => $location_id,
         ])->json()['0'];
 
-        $json_string_in_array = json_encode($storeInfo);
-
-        json_decode($storeInfo, true);
+        //json_decode($storeInfo, true);
         
+        json_decode(json_encode($storeInfo),true);
+
          foreach($storeInfo as $openHours):
              $hours = $openHours['rolling_operating_hours'];
          endforeach;
