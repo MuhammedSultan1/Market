@@ -31,38 +31,21 @@
                                 @foreach ($storeList as $store)
                                 <div class="bg-white p-5 rounded-md relative h-full w-full">
                                     <!-- class="absolute inset-0 object-center object-cover h-full w-full"  -->
-                                    <h1 class="pb-4 text-2xl font-semibold"></h1>
+                                    <h1 class="pb-2 text-4xl font-semibold">{{ $store['location_names']['0']['name'] ?? 'Near You' }}</h1>
+                                    <h2 class="text-green-500 text-2xl">{{ $openStatus }}</h2>
                                     <div class="my-5">
                                         <div class="flex items-center pb-4 cursor-pointer w-full space-x-3">
-                                            <h1 class="text-gray-900">{{ $store['location_names']['name'] ?? 'Near You' }}</h1>
-                                        </div>
-                                        <div class="flex items-center pb-4 cursor-pointer w-full space-x-3">
-                                            <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </div>
                                             <h4 class="text-md text-gray-900">{{ $store['address']['address_line1'] }}, {{ $store['address']['city'] }}, {{ $store['address']['region'] }}, {{ $store['address']['postal_code'] }}</h4>
                                         </div>
                                         <div class="flex items-center pb-4 cursor-pointer w-full">
-                                            <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </div>
                                             <h4 class="text-md text-green-500 pl-4">Open Today: {{ $openingTime }} - {{ $closingTime }}</h4>
                                         </div>
                                         <div class="flex items-center pb-4 cursor-pointer w-full">
-                                            <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </div>
-                                            <h4 class="text-md text-gray-900 pl-4">What is the refund policy if I have to cancel during the month</h4>
+                                            <h4 class="text-md text-gray-900 pl-4">Phone Number: {{ $phoneNumber }}</h4>
                                         </div>
                                     </div>
-                                    <a class="hover:text-indigo-500 hover:underline absolute bottom-5 text-sm text-indigo-700 font-bold cursor-pointer flex items-center" href="javascript:void(0)">
-                                        <p>Show All</p>
+                                    <a class="hover:text-indigo-500 hover:underline absolute bottom-5 text-sm text-indigo-700 font-bold cursor-pointer flex items-center" href="#">
+                                        <p>More Details</p>
                                         <div>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-right" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4338CA" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />

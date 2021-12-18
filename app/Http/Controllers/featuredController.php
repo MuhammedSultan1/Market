@@ -56,6 +56,10 @@ class featuredController extends Controller
 
                 $endTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'];
                 $closingTime = date('h:i A', strtotime($endTime));
+
+                $phoneNumber = $store['contact_information']['telephone_number'];
+
+                $openStatus = $store['status'];
             endforeach;
         
             
@@ -67,6 +71,8 @@ class featuredController extends Controller
              'openingTime' => $openingTime,
              'endTime' => $endTime,
             'closingTime' => $closingTime,
+            'phoneNumber' => $phoneNumber,
+            'openStatus' => $openStatus,
          ]);
     }
 
