@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default', ['myStore' => $myStore])
 
 @section('content')
 

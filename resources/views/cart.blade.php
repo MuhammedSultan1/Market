@@ -1,5 +1,4 @@
-@extends('layouts.default')
-
+@extends('layouts.default', ['myStore' => $myStore])
 @section('content')
 
   <div class="container p-8 mx-auto mt-12">
