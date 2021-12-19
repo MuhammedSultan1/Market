@@ -88,7 +88,7 @@ class featuredController extends Controller
             'location_id' => $location_id,
         ])->json()['0'];
 
-         return view('stores-info',[
+         return view('store-info',[
              'storeInfo' => $storeInfo,
              'location_id' => $location_id,
          ]);
