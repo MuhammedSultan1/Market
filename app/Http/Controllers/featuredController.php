@@ -88,53 +88,9 @@ class featuredController extends Controller
             'location_id' => $location_id,
         ])->json()['0'];
 
-        //json_decode($storeInfo, true);
-        
-        json_decode(json_encode($storeInfo),true);
-
-         foreach($storeInfo as $openHours):
-            $hours = $openHours['rolling_operating_hours']['regular_event_hours']['days'];
-             if(isset($hours)){
-                dump($hours);
-             }else{
-                 echo "There's nothing there???";
-             }
-         endforeach;
-
-
-         
-        //  foreach($storeInfo as $openHours => $hours):
-        //      $beginTime = $hours['rolling_operating_hours']['regular_event_hours']['days'];
-        //      $openingTime = date('h:i A', strtotime($beginTime));
-
-        //      $endTime = $hours->rolling_operating_hours->regular_event_hours->days->hours['0']->end_time;
-        //      $closingTime = date('h:i A', strtotime($endTime));
-        //  endforeach;
-        // foreach($storeInfo as $openHours):
-        // $hours = $openHours['rolling_operating_hours']['regular_event_hours']['days'];
-        // endforeach;  
-        
-
-        // foreach($hours as $openingAndClosingTime):
-        // $beginTime = $openingAndClosingTime['regular_event_hours']['days']['hours']['0']['begin_time'];
-        // $openingTime = date('h:i A', strtotime($beginTime));
-        
-        // $endTime = $openingAndClosingTime['regular_event_hours']['days']['hours']['0']['end_time'];
-        // $closingTime = date('h:i A', strtotime($endTime));
-        // endforeach;
-
-
-
          return view('stores-info',[
              'storeInfo' => $storeInfo,
              'location_id' => $location_id,
-             'openHours' => $openHours,
-             'hours' => $hours,
-             'openingAndClosingTime' => $openingAndClosingTime,
-             'beginTime' => $beginTime,
-             'openingTime' => $openingTime,
-             'endTime' => $endTime,
-             'closingTime' => $closingTime,
          ]);
     }
 
