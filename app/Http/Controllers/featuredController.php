@@ -78,6 +78,21 @@ class featuredController extends Controller
          ]);
     }
 
+    public function youAreShoppingAt($location_id){
+
+        $myStore = Http::withHeaders([
+        'x-rapidapi-host' => 'target1.p.rapidapi.com',
+        'x-rapidapi-key' => env('RAPID_API_KEY'),
+        ])->get('https://target1.p.rapidapi.com/stores/get-details', [
+            'location_id' => $location_id,
+        ])->json()['0']['location_names']['0']['name'];
+
+         return view('layouts.default',[
+             'myStore' => $myStore,
+             'location_id' => $location_id,
+         ]);
+    }
+
     public function getStoreInfo($location_id){
 
         $storeInfo = Http::withHeaders([
