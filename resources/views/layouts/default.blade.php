@@ -53,9 +53,6 @@ if(Session::has('user'))
                         <a href="{{ url('register') }}" class="text-white">Sign Up</a>
                     </li>
                     <li class="md:ml-6 mt-3 md:mt-0">
-                        <a href="{{ url('cart') }}" class="text-white">Items in the cart: {{ $total }}</a>
-                    </li>
-                    <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{{ url('about') }}" class="text-white">About This Project</a>
                     </li>
                 </ul>
@@ -82,6 +79,9 @@ if(Session::has('user'))
                     </li>
                     <li class="md:ml-6 mt-3 md:mt-0">
                         <a href="{{ url('stores') }}" class="text-gray-500">Find Stores</a>
+                    </li>
+                     <li class="md:ml-6 mt-3 md:mt-0">
+                        <a href="{{ url('cart') }}" class="text-white">Items in the cart: {{ $total }}</a>
                     </li>
                 </ul>
             </div>
