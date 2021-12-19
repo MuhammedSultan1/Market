@@ -14,6 +14,5 @@
     </div>
   </div>
 </section>
-@include('layouts.featuredCategories')
 @include('layouts.moreSpace')
 @endsection
