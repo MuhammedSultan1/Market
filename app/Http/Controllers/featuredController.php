@@ -88,9 +88,16 @@ class featuredController extends Controller
             'location_id' => $location_id,
         ])->json()['0'];
 
+        foreach ($storeInfo as $index => $item) {
+           $capabilityName = $item->capability_name;
+        }
+
          return view('store-info',[
              'storeInfo' => $storeInfo,
              'location_id' => $location_id,
+             'index' => $index,
+             'item' => $item,
+             'capabilityName' => $capabilityName,
          ]);
     }
 
