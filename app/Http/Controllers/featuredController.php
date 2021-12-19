@@ -79,7 +79,7 @@ class featuredController extends Controller
     }
 
     public function youAreShoppingAt($location_id){
-
+        
         $myStore = Http::withHeaders([
         'x-rapidapi-host' => 'target1.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
@@ -87,7 +87,7 @@ class featuredController extends Controller
             'location_id' => $location_id,
         ])->json()['0']['location_names']['0']['name'];
 
-         return view('layouts.default',[
+         return view('layouts.quickLinks',[
              'myStore' => $myStore,
              'location_id' => $location_id,
          ]);
