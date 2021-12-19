@@ -19,7 +19,7 @@
               <i class="far fa-clock"></i>
             </svg>
           </div>
-          <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{ $infoBit['capabilities']['capability_name'] }}</h2>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{ $infoBit->capabilities->capability_name }}</h2>
         </div>
       </div>
     </div>
