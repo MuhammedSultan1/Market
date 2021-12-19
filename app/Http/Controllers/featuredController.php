@@ -110,14 +110,7 @@ class featuredController extends Controller
             'sort_by' => 'relevance',
         ])->json()['data']['search']['products'];
 
-        return view('index',[
-            'featuredItems' => $featuredItems,
-        ]);
-    }
-
-      public function getCategories()
-    {
-       $CategoriesRequest = Http::withHeaders([
+        $CategoriesRequest = Http::withHeaders([
         'x-rapidapi-host' => 'target1.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
         ])->get('https://target1.p.rapidapi.com/categories/list',)
@@ -128,7 +121,8 @@ class featuredController extends Controller
         $Categories = $CategoriesCollection->whereNotIn('displayText', ['Christmas', 'Gift Ideas', 'What\'s New', 'Pharmacy', 'RedCard', 'Pharmacy', 'Shipping & Order Services']);
 
 
-        return view('layouts.featuredCategories',[
+        return view('index',[
+            'featuredItems' => $featuredItems,
             'Categories' => $Categories,
         ]);
     }

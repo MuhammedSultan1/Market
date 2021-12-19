@@ -10,8 +10,6 @@ use App\Http\Controllers\ProductController;
 // ROUTES RELATED TO PRODUCTS
 Route::get('/', 'App\Http\Controllers\featuredController@index');
 
-Route::get('/featuredCategories', 'App\Http\Controllers\featuredController@getCategories');
-
 Route::get('/item/{tcin}/{store_id}',[
     'uses' => 'App\Http\Controllers\DetailsController@getInfo',
     'as'   => 'item'
