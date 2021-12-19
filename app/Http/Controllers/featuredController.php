@@ -45,7 +45,6 @@ class featuredController extends Controller
                'zipcode' => $zipcode,
             ])->json()['0']['locations'];
 
-            dump($storeList);
 
 
 
@@ -95,14 +94,21 @@ class featuredController extends Controller
     }
 
 
-    public function index()
+    public function index($location_id)
     {
-       
+
+        //pass the location_id into the 'store_id', but if there is no location_id passed in, then set it to '911'
+        if(isset($location_id)){
+            $store_id = $location_id;
+        }else{
+            $store_id = '911';
+        }
+
       $featuredItems = Http::withHeaders([
         'x-rapidapi-host' => 'target1.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
         ])->get('https://target1.p.rapidapi.com/products/v2/list', [
-            'store_id' => '911',
+            'store_id' => $store_id,
             'category' => '5xt1a',
             'count' => '20',
             'offset' => '0',
@@ -123,6 +129,7 @@ class featuredController extends Controller
 
         return view('index',[
             'featuredItems' => $featuredItems,
+            '$store_id' => $store_id,
             'Categories' => $Categories,
         ]);
     }

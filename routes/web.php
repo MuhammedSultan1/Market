@@ -34,6 +34,7 @@ Route::get('/store-info/{location_id}',[
     'as'   => 'store-info'
 ]);
 
+// OTHER ROUTES
 
 Route::get('/about', function () {
     return view('about');
