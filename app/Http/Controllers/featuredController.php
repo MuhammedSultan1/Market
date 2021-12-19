@@ -78,20 +78,6 @@ class featuredController extends Controller
          ]);
     }
 
-    public function youAreShoppingAt($location_id){
-        
-        $myStore = Http::withHeaders([
-        'x-rapidapi-host' => 'target1.p.rapidapi.com',
-        'x-rapidapi-key' => env('RAPID_API_KEY'),
-        ])->get('https://target1.p.rapidapi.com/stores/get-details', [
-            'location_id' => $location_id,
-        ])->json()['0']['location_names']['0']['name'];
-
-         return view('layouts.quickLinks',[
-             'myStore' => $myStore,
-             'location_id' => $location_id,
-         ]);
-    }
 
     public function getStoreInfo($location_id){
 
@@ -109,21 +95,15 @@ class featuredController extends Controller
     }
 
 
-    public function index($location_id)
+    public function index()
     {
 
-        //pass the location_id into the 'store_id', but if there is no location_id passed in, then set it to '911'
-        if(isset($location_id)){
-            $store_id = $location_id;
-        }else{
-            $store_id = '911';
-        }
 
       $featuredItems = Http::withHeaders([
         'x-rapidapi-host' => 'target1.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
         ])->get('https://target1.p.rapidapi.com/products/v2/list', [
-            'store_id' => $store_id,
+            'store_id' => '911',
             'category' => '5xt1a',
             'count' => '20',
             'offset' => '0',

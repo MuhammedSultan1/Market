@@ -68,7 +68,7 @@ if(Session::has('user'))
     
       {{-- Quick Links Begins --}}
 
-       @include('quickLinks', ['myStore' => $myStore])
+       @include('quickLinks')
 
         {{-- Quick Links Ends --}}
 
