@@ -19,13 +19,11 @@
               <i class="far fa-clock"></i>
             </svg>
           </div>
-          <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{ $infoBit->rolling_operating_hours->regular_event_hours->days->day_name }}, {{ \Carbon\Carbon::parse($infoBit->rolling_operating_hours->regular_event_hours->days->date)->format('M d, Y') }}</h2>
-          <p class="leading-relaxed text-base">{{ $infoBit->rolling_operating_hours->regular_event_hours->days->hours['0']->begin_time }} - {{ $infoBit->rolling_operating_hours->regular_event_hours->days->hours['0']->end_time }}</p>
+          <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{ $infoBit['capabilities']['capability_name'] }}</h2>
         </div>
       </div>
     </div>
     @endforeach
-    <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
   </div>
 </section>
 
