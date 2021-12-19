@@ -88,16 +88,9 @@ class featuredController extends Controller
             'location_id' => $location_id,
         ])->json()['0'];
 
-        foreach ($storeInfo as $index => $item) {
-           $capabilityName = $item->capability_name;
-        }
-
          return view('store-info',[
              'storeInfo' => $storeInfo,
              'location_id' => $location_id,
-             'index' => $index,
-             'item' => $item,
-             'capabilityName' => $capabilityName,
          ]);
     }
 
@@ -117,6 +110,13 @@ class featuredController extends Controller
             'sort_by' => 'relevance',
         ])->json()['data']['search']['products'];
 
+        return view('index',[
+            'featuredItems' => $featuredItems,
+        ]);
+    }
+
+      public function getCategories()
+    {
        $CategoriesRequest = Http::withHeaders([
         'x-rapidapi-host' => 'target1.p.rapidapi.com',
         'x-rapidapi-key' => env('RAPID_API_KEY'),
@@ -128,8 +128,7 @@ class featuredController extends Controller
         $Categories = $CategoriesCollection->whereNotIn('displayText', ['Christmas', 'Gift Ideas', 'What\'s New', 'Pharmacy', 'RedCard', 'Pharmacy', 'Shipping & Order Services']);
 
 
-        return view('index',[
-            'featuredItems' => $featuredItems,
+        return view('layouts.featuredCategories',[
             'Categories' => $Categories,
         ]);
     }

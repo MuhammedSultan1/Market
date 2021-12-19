@@ -72,8 +72,10 @@
                 </a>
                 <div class="mt-2">
                     <a href="" class="text-lg mt-2 hover:text-gray:300">{{ $recommendedItems['title'] }}</a>
-                    <div class="flex items-center text-gray-500">  
-                    <span class="ml-1">Ratings: {{ $item['ratings_and_reviews']['statistics']['rating']['count'] ?? ''}}</span>
+                    <div class="flex items-center">  
+                    <div class="text-red-600">
+                    {{ $recommendedItems['price']['formatted_current_price'] }}
+                    </div>
                         <span class="mx-2">|</span>
                         <span class="text-green-600"> 
                         @php
@@ -82,9 +84,6 @@
                         }
                         @endphp
                         {{ $availability }} </span>
-                    </div>
-                 <div class="text-red-600">
-                    {{ $recommendedItems['price']['formatted_current_price'] }}
                     </div>
                 </div>
             </div>
