@@ -124,7 +124,6 @@ class featuredController extends Controller
 
         return view('index',[
             'featuredItems' => $featuredItems,
-            '$store_id' => $store_id,
             'Categories' => $Categories,
         ]);
     }
