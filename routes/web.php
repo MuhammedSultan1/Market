@@ -8,7 +8,7 @@ use App\Http\Controllers\ProductController;
 
 
 // ROUTES RELATED TO PRODUCTS
-Route::get('/', 'App\Http\Controllers\featuredController@index');
+Route::get('/', 'App\Http\Controllers\featuredController@index')->name('/');;
 
 Route::get('/item/{tcin}/{store_id}',[
     'uses' => 'App\Http\Controllers\DetailsController@getInfo',
