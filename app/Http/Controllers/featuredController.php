@@ -62,11 +62,11 @@ class featuredController extends Controller
                'zipcode' => $zipcode,
             ])->json()['0']['locations'];
 
-
-
+            $storeListArray = json_decode($storeList, TRUE);
+                
 
             //storeList variables
-            foreach($storeList as $store):
+            foreach($storeListArray as $store):
                 $storeName = $store['location_names']['0']['name'] ?? 'Near You';
 
                 $beginTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'] ?? '';
@@ -87,6 +87,7 @@ class featuredController extends Controller
              'clientIpAddress' => $clientIpAddress,
              'zipcode' => $zipcode,
              'storeList' => $storeList,
+             'storeListArray' => $storeListArray,
              'storeName' => $storeName,
              'beginTime' => $beginTime,
              'openingTime' => $openingTime,
