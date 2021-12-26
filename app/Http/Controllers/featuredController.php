@@ -50,7 +50,6 @@ class featuredController extends Controller
                 $clientIpAddress = $_SERVER['HTTP_CLIENT_IP'];
             }
 
-            echo $clientIpAddress;
 
             $zipcode = Http::get('http://ip-api.com/json/'.$clientIpAddress)->json()['zip'];
             
