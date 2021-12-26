@@ -62,7 +62,7 @@ class featuredController extends Controller
                'zipcode' => $zipcode,
             ])->json()['0']['locations'];
 
-            $storeListArray = json_decode($storeList, TRUE);
+            $storeListArray = json_decode($storeList[0]);
                 
 
             //storeList variables
