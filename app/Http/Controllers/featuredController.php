@@ -68,17 +68,17 @@ class featuredController extends Controller
 
             //storeList variables
             foreach($storeList as $store):
-                $beginTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'];
-                $openingTime = date('h:i A', strtotime($beginTime));
+                $beginTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'] ?? '';
+                $openingTime = date('h:i A', strtotime($beginTime)) ?? '';
 
-                $endTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'];
-                $closingTime = date('h:i A', strtotime($endTime));
+                $endTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'] ?? '';
+                $closingTime = date('h:i A', strtotime($endTime)) ?? '';
 
-                $phoneNumber = $store['contact_information']['telephone_number'];
+                $phoneNumber = $store['contact_information']['telephone_number'] ?? '';
 
-                $openStatus = $store['status'];
+                $openStatus = $store['status'] ?? '';
 
-                $location_id = $store['location_id'];
+                $location_id = $store['location_id'] ?? '';
             endforeach;
         
             
