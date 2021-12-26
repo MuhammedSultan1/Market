@@ -46,18 +46,18 @@
                                                 Open Today: 
                                                 @php
                                                 $beginTime = $location['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'] ?? '';
-                                                date('h:i A', strtotime($beginTime)) ?? ''; 
+                                                $openingTime = date('h:i A', strtotime($beginTime)) ?? ''; 
                                                 $endTime = $location['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'] ?? '';
-                                                date('h:i A', strtotime($endTime)) ?? ''; 
+                                                $closingTime = date('h:i A', strtotime($endTime)) ?? ''; 
                                                 @endphp
-                                                {{ $beginTime }} - {{ $endTime }}
+                                                {{ $openingTime }} - {{ $closingTime }}
                                             </h4>
                                         </div>
                                         <div class="flex items-center pb-4 cursor-pointer w-full">
                                             <h4 class="text-md text-gray-900 pl-4">Phone Number: {{ $location['contact_information']['telephone_number'] ?? '' }}</h4>
                                         </div>
                                     </div>
-                                    <a class="hover:text-indigo-500 hover:underline absolute bottom-5 text-sm text-indigo-700 font-bold cursor-pointer flex items-center" href="{!! route('store-info', ['location_id'=>$location_id]) !!}">
+                                    <a class="hover:text-indigo-500 hover:underline absolute bottom-5 text-sm text-indigo-700 font-bold cursor-pointer flex items-center" href="{!! route('store-info', ['location_id'=>$location['location_id']]) !!}">
                                         <p>More Details</p>
                                         <div>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-right" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="#4338CA" fill="none" stroke-linecap="round" stroke-linejoin="round">
