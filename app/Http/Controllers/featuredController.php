@@ -67,6 +67,8 @@ class featuredController extends Controller
 
             //storeList variables
             foreach($storeList as $store):
+                $storeName = $store['location_names']['0']['name'] ?? 'Near You';
+
                 $beginTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'] ?? '';
                 $openingTime = date('h:i A', strtotime($beginTime)) ?? '';
 
@@ -85,7 +87,7 @@ class featuredController extends Controller
              'clientIpAddress' => $clientIpAddress,
              'zipcode' => $zipcode,
              'storeList' => $storeList,
-             'store' => $store,
+             'storeName' => $storeName,
              'beginTime' => $beginTime,
              'openingTime' => $openingTime,
              'endTime' => $endTime,
