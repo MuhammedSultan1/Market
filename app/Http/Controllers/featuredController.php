@@ -85,6 +85,7 @@ class featuredController extends Controller
              'clientIpAddress' => $clientIpAddress,
              'zipcode' => $zipcode,
              'storeList' => $storeList,
+             'store' => $store,
              'beginTime' => $beginTime,
              'openingTime' => $openingTime,
              'endTime' => $endTime,
