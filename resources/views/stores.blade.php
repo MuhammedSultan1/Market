@@ -27,25 +27,34 @@
                     </div>
                     <div class="px-6 xl:px-0">
                         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 pb-6 gap-8">
-                            @foreach ($storeListArray as $location)
+                            @foreach ($storeList as $location)
                             <div role="cell" class="bg-gray-100">
                                 <div class="bg-white p-5 rounded-md relative h-full w-full">
                                     <!-- class="absolute inset-0 object-center object-cover h-full w-full"  -->
                                     <h1 class="pb-2 text-4xl font-semibold">{{ $location['location_names']['0']['name'] ?? 'Near You' }}</h1>
-                                    @if ($openStatus === "Open")    
-                                   <h2 class="text-green-500 text-2xl">{{ $openStatus }}</h2>
+                                    @if ($location['status'] === "Open")    
+                                   <h2 class="text-green-500 text-2xl">{{ $location['status'] ?? '' }}</h2>
                                    @else
-                                   <h2 class="text-red-500 text-2xl">{{ $openStatus }}</h2>
+                                   <h2 class="text-red-500 text-2xl">Closed</h2>
                                    @endif
                                     <div class="my-5">
                                         <div class="flex items-center pb-4 cursor-pointer w-full space-x-3">
                                             <h4 class="text-md text-gray-900">{{ $location['address']['address_line1'] }}, {{ $location['address']['city'] }}, {{ $location['address']['region'] }}, {{ $location['address']['postal_code'] }}</h4>
                                         </div>
                                         <div class="flex items-center pb-4 cursor-pointer w-full">
-                                            <h4 class="text-md text-green-500 pl-4">Open Today: {{ $openingTime }} - {{ $closingTime }}</h4>
+                                            <h4 class="text-md text-green-500 pl-4">
+                                                Open Today: 
+                                                @php
+                                                $beginTime = $location['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'] ?? '';
+                                                date('h:i A', strtotime($beginTime)) ?? ''; 
+                                                $endTime = $location['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'] ?? '';
+                                                date('h:i A', strtotime($endTime)) ?? ''; 
+                                                @endphp
+                                                {{ $beginTime }} - {{ $endTime }}
+                                            </h4>
                                         </div>
                                         <div class="flex items-center pb-4 cursor-pointer w-full">
-                                            <h4 class="text-md text-gray-900 pl-4">Phone Number: {{ $phoneNumber }}</h4>
+                                            <h4 class="text-md text-gray-900 pl-4">Phone Number: {{ $location['contact_information']['telephone_number'] ?? '' }}</h4>
                                         </div>
                                     </div>
                                     <a class="hover:text-indigo-500 hover:underline absolute bottom-5 text-sm text-indigo-700 font-bold cursor-pointer flex items-center" href="{!! route('store-info', ['location_id'=>$location_id]) !!}">

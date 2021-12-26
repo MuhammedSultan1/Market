@@ -62,40 +62,25 @@ class featuredController extends Controller
                'zipcode' => $zipcode,
             ])->json()['0']['locations'];
 
-            $storeListArray = json_decode($storeList[0]);
+
                 
 
             //storeList variables
-            foreach($storeListArray as $store):
-                $storeName = $store['location_names']['0']['name'] ?? 'Near You';
+            // foreach($storeList as $store):
+            //     $beginTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'] ?? '';
+            //     $openingTime = date('h:i A', strtotime($beginTime)) ?? '';
 
-                $beginTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['begin_time'] ?? '';
-                $openingTime = date('h:i A', strtotime($beginTime)) ?? '';
+            //     $endTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'] ?? '';
+            //     $closingTime = date('h:i A', strtotime($endTime)) ?? '';
 
-                $endTime = $store['rolling_operating_hours']['regular_event_hours']['days']['0']['hours']['0']['end_time'] ?? '';
-                $closingTime = date('h:i A', strtotime($endTime)) ?? '';
-
-                $phoneNumber = $store['contact_information']['telephone_number'] ?? '';
-
-                $openStatus = $store['status'] ?? '';
-
-                $location_id = $store['location_id'] ?? '';
-            endforeach;
+            //     $location_id = $store['location_id'] ?? '';
+            // endforeach;
         
             
          return view('stores',[
              'clientIpAddress' => $clientIpAddress,
              'zipcode' => $zipcode,
              'storeList' => $storeList,
-             'storeListArray' => $storeListArray,
-             'storeName' => $storeName,
-             'beginTime' => $beginTime,
-             'openingTime' => $openingTime,
-             'endTime' => $endTime,
-            'closingTime' => $closingTime,
-            'phoneNumber' => $phoneNumber,
-            'openStatus' => $openStatus,
-            'location_id' => $location_id,
          ]);
     }
 
