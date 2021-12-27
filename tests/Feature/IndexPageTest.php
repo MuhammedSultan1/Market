@@ -13,18 +13,28 @@ class ViewItemsTest extends TestCase
     {   
       Http::fake([
             'https://target1.p.rapidapi.com/products/v2/list' => $this->fakeProductsList(),
-            'https://target1.p.rapidapi.com/categories/list' => $this->fakeCategoriesList(),
         ]);
 
         $response = $this->get(route('/'));
 
         $response->assertStatus(200);
 
-        $response->assertSee('Fake Organic Bananas - 2lb Bag');
+        $response->assertSee('Organic Bananas - 2lb Bag');
 
-        $response->assertSee('Fake Grocery');
-        $response->assertSee('Fake Electronics');
-        $response->assertSee('Fake School & Office Supplies');
+    }
+
+     /** @test */
+    public function the_index_page_shows_the_correct_categories()
+    {   
+      Http::fake([
+            'https://target1.p.rapidapi.com/categories/list' => $this->fakeCategoriesList(),
+        ]);
+
+        $response = $this->get(route('/'));
+
+        $response->assertSee('Grocery');
+        $response->assertSee('Electronics');
+        $response->assertSee('School & Office Supplies');
 
     }
 
@@ -53,7 +63,7 @@ class ViewItemsTest extends TestCase
             ],
             'item_state' => 'READY_FOR_LAUNCH',
             'product_description' => [
-              'title' => 'Fake Organic Bananas - 2lb Bag',
+              'title' => 'Organic Bananas - 2lb Bag',
             ],
             'product_vendors' => [
               0 => [
@@ -1085,7 +1095,7 @@ class ViewItemsTest extends TestCase
       'cells' => [
         'items' => [
           4 => [
-            'displayText' => 'Fake Grocery',
+            'displayText' => 'Grocery',
             'image' => [
               'uri' => 'https://target.scene7.com/is/image/Target/Grocery190519-190910_1568137689491?qlt=80',
               'accessibilityText' => 'Grocery',
@@ -1101,7 +1111,7 @@ class ViewItemsTest extends TestCase
             'decoration' => 'BOLD',
           ],
           17 => [
-            'displayText' => 'Fake Electronics',
+            'displayText' => 'Electronics',
             'image' => [
               'uri' => 'https://target.scene7.com/is/image/Target/Electronics-200310-1583876892218?qlt=80',
               'accessibilityText' => 'Electronics',
@@ -1117,7 +1127,7 @@ class ViewItemsTest extends TestCase
             'decoration' => 'BOLD',
           ],
           24 => [
-            'displayText' => 'Fake School & Office Supplies',
+            'displayText' => 'School & Office Supplies',
             'image' => [
               'uri' => 'https://target.scene7.com/is/image/Target/school_office138096-180815_1534366767484?qlt=80',
               'accessibilityText' => 'School & Office Supplies',

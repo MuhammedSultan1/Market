@@ -20,9 +20,9 @@ class DisplayItemDetailsTest extends TestCase
 
         $response->assertStatus(200);
 
-        $response->assertSee('Fake GROCERY');
-        $response->assertSee('Fake KIND Thins Peanut Butter Dark Chocolate - 7.4oz/10ct');
-        $response->assertSee('Fake State of Readiness: Ready to Eat');
+        $response->assertSee('GROCERY');
+        $response->assertSee('KIND Thins Peanut Butter Dark Chocolate - 7.4oz/10ct');
+        $response->assertSee('State of Readiness: Ready to Eat');
         
     }
 
@@ -38,17 +38,17 @@ class DisplayItemDetailsTest extends TestCase
         'assigned_selling_channels_code' => 'stores_only',
         'primary_barcode' => '602652296666',
         'product_classification' => [
-          'product_type_name' => 'Fake GROCERY',
+          'product_type_name' => 'GROCERY',
         ],
         'product_description' => [
-          'title' => 'Fake KIND Thins Peanut Butter Dark Chocolate - 7.4oz/10ct',
+          'title' => 'KIND Thins Peanut Butter Dark Chocolate - 7.4oz/10ct',
           'downstream_description' => 'KIND THINS Peanut Butter Dark Chocolate bars are a thinner take on your favorite KIND bar. Each bar is crafted with sliced almonds and roasted peanuts for a chewier crunch and a lighter bite. With almonds as the #1 ingredient, these gluten free bars have a thin layer of sliced almonds and peanuts with a chocolatey coating and drizzle for the ultimate snack bar. These KIND Peanut Butter Dark chocolate thin bars are made with quality ingredients, and are great for any occasion, whether you need nutrition bars for the office or a nutritious snack for a busy day. A convenient, nutrient dense, grab-and-go snack, KIND crunchy thin granola bars make eating healthy easier. Each gluten free bar contains 4 grams of sugar, 100 calories, and is made without genetically engineered ingredients.',
           'bullet_descriptions' => [
             0 => '<B>Contains:</B> Soy, Almonds, Peanuts',
             1 => '<B>May Contain:</B> Tree Nuts',
             2 => '<B>Consistency:</B> Crunchy',
             3 => '<B>Form:</B> Bar',
-            4 => '<B>Fake State of Readiness:</B> Ready to Eat',
+            4 => '<B>State of Readiness:</B> Ready to Eat',
             5 => '<B>Package Quantity:</B> 10',
             6 => '<B>Package type:</B> Multi-Pack Single Servings',
             7 => '<B>Net weight:</B> 7.4 Ounces',
