@@ -27,7 +27,7 @@ Route::get('/category/{subCategory}',[
 
 // ROUTES RELATED TO STORES
 
-Route::get('/stores', 'App\Http\Controllers\featuredController@getLocation');
+Route::get('/stores', 'App\Http\Controllers\featuredController@getLocation')->name('stores');
 
 Route::get('/store-info/{location_id}',[
     'uses' => 'App\Http\Controllers\featuredController@getStoreInfo',
