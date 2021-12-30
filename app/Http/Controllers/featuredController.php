@@ -62,13 +62,11 @@ class featuredController extends Controller
                'zipcode' => $zipcode,
             ])->json()['0']['locations'];
 
-            $location_id = $storeList['location_id'];
  
          return view('stores',[
              'clientIpAddress' => $clientIpAddress,
              'zipcode' => $zipcode,
              'storeList' => $storeList,
-             'location_id' => $location_id,
          ]);
     }
 
