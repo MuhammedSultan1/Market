@@ -25,6 +25,21 @@ class StoreListAndDetailsTest extends TestCase
         $response->assertSee('Open Today: 08:00 AM - 10:00 PM');
         $response->assertSee('Phone Number: 904-596-1065');        
     }
+    /** @test */
+    public function the_store_details_are_the_correct_details()
+    {
+        Http::fake([
+            'https://target1.p.rapidapi.com/stores/get-details' => $this->fake_store_list()
+        ]);
+
+        $response = $this->get(route('stores', ['zipcode' => '911']));
+
+        $response->assertStatus(200);
+
+        $response->assertSee('Ortega');
+        $response->assertSee('6331 Roosevelt Blvd, Jacksonville, Florida, 32244-3303');
+        $response->assertSee('904-596-1065');        
+    }
 
         private function fake_store_list(){
             return Http::response([
@@ -1599,4 +1614,1454 @@ class StoreListAndDetailsTest extends TestCase
 ]
             ], 200);
         }
+
+        private function fake_store_details(){
+            return Http::response([
+              [
+  0 => [
+    'location_id' => 1853,
+    'type_code' => 'STR',
+    'type_description' => 'Store',
+    'sub_type_code' => 'SuperTarget',
+    'status' => 'Open',
+    'location_names' => [
+      0 => [
+        'name_type' => 'Proj Name',
+        'name' => 'Ortega',
+      ],
+    ],
+    'address' => [
+      'address_line1' => '6331 Roosevelt Blvd',
+      'city' => 'Jacksonville',
+      'county' => 'Duval',
+      'region' => 'FL',
+      'state' => 'Florida',
+      'postal_code' => '32244-3303',
+      'country_code' => 'US',
+      'country' => 'United States of America',
+    ],
+    'capabilities' => [
+      0 => [
+        'capability_code' => 'Mobile',
+        'capability_name' => 'Cell Phone Activation Counter',
+        'effective_date' => '2011-05-16',
+      ],
+      1 => [
+        'capability_code' => 'Starbucks',
+        'capability_name' => 'Starbucks',
+        'effective_date' => '2004-07-21',
+      ],
+      2 => [
+        'capability_code' => 'WIC',
+        'capability_name' => 'Accepts WIC',
+        'effective_date' => '2013-05-01',
+      ],
+      3 => [
+        'capability_code' => 'CVS pharmacy',
+        'capability_name' => 'CVS pharmacy',
+        'effective_date' => '2016-04-20',
+      ],
+      4 => [
+        'capability_code' => 'Wine Beer',
+        'capability_name' => 'Wine & Beer Available',
+        'effective_date' => '2017-03-23',
+      ],
+      5 => [
+        'capability_code' => 'Deli',
+        'capability_name' => 'Deli',
+        'effective_date' => '2018-02-22',
+      ],
+      6 => [
+        'capability_code' => 'Bakery',
+        'capability_name' => 'Bakery',
+        'effective_date' => '2018-02-22',
+      ],
+      7 => [
+        'capability_code' => 'Shipt Delivery',
+        'capability_name' => 'Shipt Delivery',
+        'effective_date' => '2018-03-14',
+      ],
+      8 => [
+        'capability_code' => 'Expand Grocery',
+        'capability_name' => 'Expanded Grocery',
+        'effective_date' => '2018-05-28',
+      ],
+      9 => [
+        'capability_code' => 'Drive Up',
+        'capability_name' => 'Drive Up',
+        'effective_date' => '2018-04-16',
+        'latitude' => 30.235209,
+        'longitude' => -81.695288,
+        'radius' => 86.0,
+      ],
+      10 => [
+        'capability_code' => 'Store Pickup',
+        'capability_name' => 'Store Pickup',
+        'effective_date' => '2019-02-28',
+      ],
+      11 => [
+        'capability_code' => 'Vulnerable Shop',
+        'capability_name' => 'Reserved for vulnerable guests',
+        'effective_date' => '2020-04-12',
+      ],
+    ],
+    'physical_specifications' => [
+      'total_building_area' => 174695,
+      'merchandise_level' => 1,
+      'format' => 'SuperTarget',
+    ],
+    'contact_information' => [
+      0 => [
+        'building_area' => 'MAIN',
+        'telephone_type' => 'VOICE',
+        'is_international_phone_number' => false,
+        'telephone_number' => '904-596-1065',
+      ],
+      1 => [
+        'building_area' => 'Capability',
+        'capability' => 'Mobile',
+        'telephone_type' => 'VOICE',
+        'is_international_phone_number' => false,
+        'telephone_number' => '904-596-1065',
+      ],
+      2 => [
+        'building_area' => 'MAIN',
+        'telephone_type' => 'FAX',
+        'is_international_phone_number' => false,
+        'telephone_number' => '904-520-4159',
+      ],
+      3 => [
+        'building_area' => 'Capability',
+        'capability' => 'CVS pharmacy',
+        'telephone_type' => 'VOICE',
+        'is_international_phone_number' => false,
+        'telephone_number' => '904-596-1066',
+      ],
+      4 => [
+        'building_area' => 'Capability',
+        'capability' => 'CVS pharmacy',
+        'telephone_type' => 'FAX',
+        'is_international_phone_number' => false,
+        'telephone_number' => '904-520-4184',
+      ],
+    ],
+    'geographic_specifications' => [
+      'latitude' => 30.235,
+      'longitude' => -81.6952,
+      'time_zone_code' => 'EST',
+      'time_zone_description' => 'Eastern Std Time',
+      'time_zone_utc_offset_name' => 'UTC-05',
+      'time_zone_offset_hours' => '05:00:00',
+      'is_daylight_savings_time_recognized' => true,
+      'iso_time_zone_code' => 'America/New_York',
+    ],
+    'milestones' => [
+      0 => [
+        'milestone_code' => 'Open Date',
+        'milestone_date' => '2004-07-21',
+      ],
+      1 => [
+        'milestone_code' => 'Grand Open Date',
+        'milestone_date' => '2004-07-25',
+      ],
+    ],
+    'rolling_operating_hours' => [
+      'regular_event_hours' => [
+        'days' => [
+          0 => [
+            'sequence_number' => '1',
+            'date' => '2021-12-30',
+            'day_name' => 'Thursday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2021-12-30',
+                'end_date' => '2021-12-30',
+              ],
+            ],
+          ],
+          1 => [
+            'sequence_number' => '2',
+            'date' => '2021-12-31',
+            'day_name' => 'Friday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '21:00:00',
+                'begin_date' => '2021-12-31',
+                'end_date' => '2021-12-31',
+              ],
+            ],
+            'event_name' => 'NYE',
+          ],
+          2 => [
+            'sequence_number' => '3',
+            'date' => '2022-01-01',
+            'day_name' => 'Saturday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-01',
+                'end_date' => '2022-01-01',
+              ],
+            ],
+          ],
+          3 => [
+            'sequence_number' => '4',
+            'date' => '2022-01-02',
+            'day_name' => 'Sunday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-02',
+                'end_date' => '2022-01-02',
+              ],
+            ],
+          ],
+          4 => [
+            'sequence_number' => '5',
+            'date' => '2022-01-03',
+            'day_name' => 'Monday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-03',
+                'end_date' => '2022-01-03',
+              ],
+            ],
+          ],
+          5 => [
+            'sequence_number' => '6',
+            'date' => '2022-01-04',
+            'day_name' => 'Tuesday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-04',
+                'end_date' => '2022-01-04',
+              ],
+            ],
+          ],
+          6 => [
+            'sequence_number' => '7',
+            'date' => '2022-01-05',
+            'day_name' => 'Wednesday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-05',
+                'end_date' => '2022-01-05',
+              ],
+            ],
+          ],
+          7 => [
+            'sequence_number' => '8',
+            'date' => '2022-01-06',
+            'day_name' => 'Thursday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-06',
+                'end_date' => '2022-01-06',
+              ],
+            ],
+          ],
+          8 => [
+            'sequence_number' => '9',
+            'date' => '2022-01-07',
+            'day_name' => 'Friday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-07',
+                'end_date' => '2022-01-07',
+              ],
+            ],
+          ],
+          9 => [
+            'sequence_number' => '10',
+            'date' => '2022-01-08',
+            'day_name' => 'Saturday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-08',
+                'end_date' => '2022-01-08',
+              ],
+            ],
+          ],
+          10 => [
+            'sequence_number' => '11',
+            'date' => '2022-01-09',
+            'day_name' => 'Sunday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-09',
+                'end_date' => '2022-01-09',
+              ],
+            ],
+          ],
+          11 => [
+            'sequence_number' => '12',
+            'date' => '2022-01-10',
+            'day_name' => 'Monday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-10',
+                'end_date' => '2022-01-10',
+              ],
+            ],
+          ],
+          12 => [
+            'sequence_number' => '13',
+            'date' => '2022-01-11',
+            'day_name' => 'Tuesday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-11',
+                'end_date' => '2022-01-11',
+              ],
+            ],
+          ],
+          13 => [
+            'sequence_number' => '14',
+            'date' => '2022-01-12',
+            'day_name' => 'Wednesday',
+            'is_open' => true,
+            'hours' => [
+              0 => [
+                'begin_time' => '08:00:00',
+                'end_time' => '22:00:00',
+                'begin_date' => '2022-01-12',
+                'end_date' => '2022-01-12',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'capability_hours' => [
+        0 => [
+          'capability_code' => 'Lab',
+          'days' => [
+            0 => [
+              'sequence_number' => '1',
+              'date' => '2021-12-30',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2021-12-30',
+                  'end_date' => '2021-12-30',
+                ],
+              ],
+            ],
+            1 => [
+              'sequence_number' => '2',
+              'date' => '2021-12-31',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2021-12-31',
+                  'end_date' => '2021-12-31',
+                ],
+              ],
+            ],
+            2 => [
+              'sequence_number' => '3',
+              'date' => '2022-01-01',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-01',
+                  'end_date' => '2022-01-01',
+                ],
+              ],
+            ],
+            3 => [
+              'sequence_number' => '4',
+              'date' => '2022-01-02',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-02',
+                  'end_date' => '2022-01-02',
+                ],
+              ],
+            ],
+            4 => [
+              'sequence_number' => '5',
+              'date' => '2022-01-03',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-03',
+                  'end_date' => '2022-01-03',
+                ],
+              ],
+            ],
+            5 => [
+              'sequence_number' => '6',
+              'date' => '2022-01-04',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-04',
+                  'end_date' => '2022-01-04',
+                ],
+              ],
+            ],
+            6 => [
+              'sequence_number' => '7',
+              'date' => '2022-01-05',
+              'day_name' => 'Wednesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-05',
+                  'end_date' => '2022-01-05',
+                ],
+              ],
+            ],
+            7 => [
+              'sequence_number' => '8',
+              'date' => '2022-01-06',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-06',
+                  'end_date' => '2022-01-06',
+                ],
+              ],
+            ],
+            8 => [
+              'sequence_number' => '9',
+              'date' => '2022-01-07',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-07',
+                  'end_date' => '2022-01-07',
+                ],
+              ],
+            ],
+            9 => [
+              'sequence_number' => '10',
+              'date' => '2022-01-08',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-08',
+                  'end_date' => '2022-01-08',
+                ],
+              ],
+            ],
+            10 => [
+              'sequence_number' => '11',
+              'date' => '2022-01-09',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-09',
+                  'end_date' => '2022-01-09',
+                ],
+              ],
+            ],
+            11 => [
+              'sequence_number' => '12',
+              'date' => '2022-01-10',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-10',
+                  'end_date' => '2022-01-10',
+                ],
+              ],
+            ],
+            12 => [
+              'sequence_number' => '13',
+              'date' => '2022-01-11',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-11',
+                  'end_date' => '2022-01-11',
+                ],
+              ],
+            ],
+            13 => [
+              'sequence_number' => '14',
+              'date' => '2022-01-12',
+              'day_name' => 'Wednesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '12:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-12',
+                  'end_date' => '2022-01-12',
+                ],
+              ],
+            ],
+          ],
+        ],
+        1 => [
+          'capability_code' => 'Mobile',
+          'days' => [
+            0 => [
+              'sequence_number' => '1',
+              'date' => '2021-12-30',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2021-12-30',
+                  'end_date' => '2021-12-30',
+                ],
+              ],
+            ],
+            1 => [
+              'sequence_number' => '2',
+              'date' => '2021-12-31',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2021-12-31',
+                  'end_date' => '2021-12-31',
+                ],
+              ],
+            ],
+            2 => [
+              'sequence_number' => '3',
+              'date' => '2022-01-01',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2022-01-01',
+                  'end_date' => '2022-01-01',
+                ],
+              ],
+            ],
+            3 => [
+              'sequence_number' => '4',
+              'date' => '2022-01-02',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2022-01-02',
+                  'end_date' => '2022-01-02',
+                ],
+              ],
+            ],
+            4 => [
+              'sequence_number' => '5',
+              'date' => '2022-01-03',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2022-01-03',
+                  'end_date' => '2022-01-03',
+                ],
+              ],
+            ],
+            5 => [
+              'sequence_number' => '6',
+              'date' => '2022-01-04',
+              'day_name' => 'Tuesday',
+              'is_open' => false,
+            ],
+            6 => [
+              'sequence_number' => '7',
+              'date' => '2022-01-05',
+              'day_name' => 'Wednesday',
+              'is_open' => false,
+            ],
+            7 => [
+              'sequence_number' => '8',
+              'date' => '2022-01-06',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2022-01-06',
+                  'end_date' => '2022-01-06',
+                ],
+              ],
+            ],
+            8 => [
+              'sequence_number' => '9',
+              'date' => '2022-01-07',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2022-01-07',
+                  'end_date' => '2022-01-07',
+                ],
+              ],
+            ],
+            9 => [
+              'sequence_number' => '10',
+              'date' => '2022-01-08',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2022-01-08',
+                  'end_date' => '2022-01-08',
+                ],
+              ],
+            ],
+            10 => [
+              'sequence_number' => '11',
+              'date' => '2022-01-09',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2022-01-09',
+                  'end_date' => '2022-01-09',
+                ],
+              ],
+            ],
+            11 => [
+              'sequence_number' => '12',
+              'date' => '2022-01-10',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '11:00:00',
+                  'end_time' => '19:00:00',
+                  'begin_date' => '2022-01-10',
+                  'end_date' => '2022-01-10',
+                ],
+              ],
+            ],
+            12 => [
+              'sequence_number' => '13',
+              'date' => '2022-01-11',
+              'day_name' => 'Tuesday',
+              'is_open' => false,
+            ],
+            13 => [
+              'sequence_number' => '14',
+              'date' => '2022-01-12',
+              'day_name' => 'Wednesday',
+              'is_open' => false,
+            ],
+          ],
+        ],
+        2 => [
+          'capability_code' => 'CVS pharmacy',
+          'days' => [
+            0 => [
+              'sequence_number' => '1',
+              'date' => '2021-12-30',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2021-12-30',
+                  'end_date' => '2021-12-30',
+                ],
+              ],
+            ],
+            1 => [
+              'sequence_number' => '2',
+              'date' => '2021-12-31',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2021-12-31',
+                  'end_date' => '2021-12-31',
+                ],
+              ],
+            ],
+            2 => [
+              'sequence_number' => '3',
+              'date' => '2022-01-01',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-01',
+                  'end_date' => '2022-01-01',
+                ],
+              ],
+              'event_name' => 'NYD',
+            ],
+            3 => [
+              'sequence_number' => '4',
+              'date' => '2022-01-02',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-02',
+                  'end_date' => '2022-01-02',
+                ],
+              ],
+            ],
+            4 => [
+              'sequence_number' => '5',
+              'date' => '2022-01-03',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2022-01-03',
+                  'end_date' => '2022-01-03',
+                ],
+              ],
+            ],
+            5 => [
+              'sequence_number' => '6',
+              'date' => '2022-01-04',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2022-01-04',
+                  'end_date' => '2022-01-04',
+                ],
+              ],
+            ],
+            6 => [
+              'sequence_number' => '7',
+              'date' => '2022-01-05',
+              'day_name' => 'Wednesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2022-01-05',
+                  'end_date' => '2022-01-05',
+                ],
+              ],
+            ],
+            7 => [
+              'sequence_number' => '8',
+              'date' => '2022-01-06',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2022-01-06',
+                  'end_date' => '2022-01-06',
+                ],
+              ],
+            ],
+            8 => [
+              'sequence_number' => '9',
+              'date' => '2022-01-07',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2022-01-07',
+                  'end_date' => '2022-01-07',
+                ],
+              ],
+            ],
+            9 => [
+              'sequence_number' => '10',
+              'date' => '2022-01-08',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-08',
+                  'end_date' => '2022-01-08',
+                ],
+              ],
+            ],
+            10 => [
+              'sequence_number' => '11',
+              'date' => '2022-01-09',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '18:00:00',
+                  'begin_date' => '2022-01-09',
+                  'end_date' => '2022-01-09',
+                ],
+              ],
+            ],
+            11 => [
+              'sequence_number' => '12',
+              'date' => '2022-01-10',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2022-01-10',
+                  'end_date' => '2022-01-10',
+                ],
+              ],
+            ],
+            12 => [
+              'sequence_number' => '13',
+              'date' => '2022-01-11',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2022-01-11',
+                  'end_date' => '2022-01-11',
+                ],
+              ],
+            ],
+            13 => [
+              'sequence_number' => '14',
+              'date' => '2022-01-12',
+              'day_name' => 'Wednesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '09:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2022-01-12',
+                  'end_date' => '2022-01-12',
+                ],
+              ],
+            ],
+          ],
+        ],
+        3 => [
+          'capability_code' => 'Wine Beer',
+          'days' => [
+            0 => [
+              'sequence_number' => '1',
+              'date' => '2021-12-30',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2021-12-30',
+                  'end_date' => '2021-12-30',
+                ],
+              ],
+            ],
+            1 => [
+              'sequence_number' => '2',
+              'date' => '2021-12-31',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '21:00:00',
+                  'begin_date' => '2021-12-31',
+                  'end_date' => '2021-12-31',
+                ],
+              ],
+              'event_name' => 'NYE',
+            ],
+            2 => [
+              'sequence_number' => '3',
+              'date' => '2022-01-01',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-01',
+                  'end_date' => '2022-01-01',
+                ],
+              ],
+            ],
+            3 => [
+              'sequence_number' => '4',
+              'date' => '2022-01-02',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-02',
+                  'end_date' => '2022-01-02',
+                ],
+              ],
+            ],
+            4 => [
+              'sequence_number' => '5',
+              'date' => '2022-01-03',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-03',
+                  'end_date' => '2022-01-03',
+                ],
+              ],
+            ],
+            5 => [
+              'sequence_number' => '6',
+              'date' => '2022-01-04',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-04',
+                  'end_date' => '2022-01-04',
+                ],
+              ],
+            ],
+            6 => [
+              'sequence_number' => '7',
+              'date' => '2022-01-05',
+              'day_name' => 'Wednesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-05',
+                  'end_date' => '2022-01-05',
+                ],
+              ],
+            ],
+            7 => [
+              'sequence_number' => '8',
+              'date' => '2022-01-06',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-06',
+                  'end_date' => '2022-01-06',
+                ],
+              ],
+            ],
+            8 => [
+              'sequence_number' => '9',
+              'date' => '2022-01-07',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-07',
+                  'end_date' => '2022-01-07',
+                ],
+              ],
+            ],
+            9 => [
+              'sequence_number' => '10',
+              'date' => '2022-01-08',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-08',
+                  'end_date' => '2022-01-08',
+                ],
+              ],
+            ],
+            10 => [
+              'sequence_number' => '11',
+              'date' => '2022-01-09',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-09',
+                  'end_date' => '2022-01-09',
+                ],
+              ],
+            ],
+            11 => [
+              'sequence_number' => '12',
+              'date' => '2022-01-10',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-10',
+                  'end_date' => '2022-01-10',
+                ],
+              ],
+            ],
+            12 => [
+              'sequence_number' => '13',
+              'date' => '2022-01-11',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-11',
+                  'end_date' => '2022-01-11',
+                ],
+              ],
+            ],
+            13 => [
+              'sequence_number' => '14',
+              'date' => '2022-01-12',
+              'day_name' => 'Wednesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '22:00:00',
+                  'begin_date' => '2022-01-12',
+                  'end_date' => '2022-01-12',
+                ],
+              ],
+            ],
+          ],
+        ],
+        4 => [
+          'capability_code' => 'Vulnerable Shop',
+          'days' => [
+            0 => [
+              'sequence_number' => '1',
+              'date' => '2021-12-30',
+              'day_name' => 'Thursday',
+              'is_open' => false,
+            ],
+            1 => [
+              'sequence_number' => '2',
+              'date' => '2021-12-31',
+              'day_name' => 'Friday',
+              'is_open' => false,
+            ],
+            2 => [
+              'sequence_number' => '3',
+              'date' => '2022-01-01',
+              'day_name' => 'Saturday',
+              'is_open' => false,
+            ],
+            3 => [
+              'sequence_number' => '4',
+              'date' => '2022-01-02',
+              'day_name' => 'Sunday',
+              'is_open' => false,
+            ],
+            4 => [
+              'sequence_number' => '5',
+              'date' => '2022-01-03',
+              'day_name' => 'Monday',
+              'is_open' => false,
+            ],
+            5 => [
+              'sequence_number' => '6',
+              'date' => '2022-01-04',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '09:00:00',
+                  'begin_date' => '2022-01-04',
+                  'end_date' => '2022-01-04',
+                ],
+              ],
+            ],
+            6 => [
+              'sequence_number' => '7',
+              'date' => '2022-01-05',
+              'day_name' => 'Wednesday',
+              'is_open' => false,
+            ],
+            7 => [
+              'sequence_number' => '8',
+              'date' => '2022-01-06',
+              'day_name' => 'Thursday',
+              'is_open' => false,
+            ],
+            8 => [
+              'sequence_number' => '9',
+              'date' => '2022-01-07',
+              'day_name' => 'Friday',
+              'is_open' => false,
+            ],
+            9 => [
+              'sequence_number' => '10',
+              'date' => '2022-01-08',
+              'day_name' => 'Saturday',
+              'is_open' => false,
+            ],
+            10 => [
+              'sequence_number' => '11',
+              'date' => '2022-01-09',
+              'day_name' => 'Sunday',
+              'is_open' => false,
+            ],
+            11 => [
+              'sequence_number' => '12',
+              'date' => '2022-01-10',
+              'day_name' => 'Monday',
+              'is_open' => false,
+            ],
+            12 => [
+              'sequence_number' => '13',
+              'date' => '2022-01-11',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '08:00:00',
+                  'end_time' => '09:00:00',
+                  'begin_date' => '2022-01-11',
+                  'end_date' => '2022-01-11',
+                ],
+              ],
+            ],
+            13 => [
+              'sequence_number' => '14',
+              'date' => '2022-01-12',
+              'day_name' => 'Wednesday',
+              'is_open' => false,
+            ],
+          ],
+        ],
+        5 => [
+          'capability_code' => 'Adult Bev PU',
+          'days' => [
+            0 => [
+              'sequence_number' => '1',
+              'date' => '2021-12-30',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2021-12-30',
+                  'end_date' => '2021-12-30',
+                ],
+              ],
+            ],
+            1 => [
+              'sequence_number' => '2',
+              'date' => '2021-12-31',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2021-12-31',
+                  'end_date' => '2021-12-31',
+                ],
+              ],
+            ],
+            2 => [
+              'sequence_number' => '3',
+              'date' => '2022-01-01',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-01',
+                  'end_date' => '2022-01-01',
+                ],
+              ],
+            ],
+            3 => [
+              'sequence_number' => '4',
+              'date' => '2022-01-02',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-02',
+                  'end_date' => '2022-01-02',
+                ],
+              ],
+            ],
+            4 => [
+              'sequence_number' => '5',
+              'date' => '2022-01-03',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-03',
+                  'end_date' => '2022-01-03',
+                ],
+              ],
+            ],
+            5 => [
+              'sequence_number' => '6',
+              'date' => '2022-01-04',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-04',
+                  'end_date' => '2022-01-04',
+                ],
+              ],
+            ],
+            6 => [
+              'sequence_number' => '7',
+              'date' => '2022-01-05',
+              'day_name' => 'Wednesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-05',
+                  'end_date' => '2022-01-05',
+                ],
+              ],
+            ],
+            7 => [
+              'sequence_number' => '8',
+              'date' => '2022-01-06',
+              'day_name' => 'Thursday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-06',
+                  'end_date' => '2022-01-06',
+                ],
+              ],
+            ],
+            8 => [
+              'sequence_number' => '9',
+              'date' => '2022-01-07',
+              'day_name' => 'Friday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-07',
+                  'end_date' => '2022-01-07',
+                ],
+              ],
+            ],
+            9 => [
+              'sequence_number' => '10',
+              'date' => '2022-01-08',
+              'day_name' => 'Saturday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-08',
+                  'end_date' => '2022-01-08',
+                ],
+              ],
+            ],
+            10 => [
+              'sequence_number' => '11',
+              'date' => '2022-01-09',
+              'day_name' => 'Sunday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-09',
+                  'end_date' => '2022-01-09',
+                ],
+              ],
+            ],
+            11 => [
+              'sequence_number' => '12',
+              'date' => '2022-01-10',
+              'day_name' => 'Monday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-10',
+                  'end_date' => '2022-01-10',
+                ],
+              ],
+            ],
+            12 => [
+              'sequence_number' => '13',
+              'date' => '2022-01-11',
+              'day_name' => 'Tuesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-11',
+                  'end_date' => '2022-01-11',
+                ],
+              ],
+            ],
+            13 => [
+              'sequence_number' => '14',
+              'date' => '2022-01-12',
+              'day_name' => 'Wednesday',
+              'is_open' => true,
+              'hours' => [
+                0 => [
+                  'begin_time' => '07:00:00',
+                  'end_time' => '23:59:59',
+                  'begin_date' => '2022-01-12',
+                  'end_date' => '2022-01-12',
+                ],
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
+    'drive_up' => [
+      'location_id' => '1853',
+      'geofence' => [
+        'radius_in_meters' => 86,
+        'center' => [
+          'latitude' => 30.235209,
+          'longitude' => -81.695288,
+        ],
+      ],
+    ],
+  ],
+]
+            ], 200);
+          }
 }
