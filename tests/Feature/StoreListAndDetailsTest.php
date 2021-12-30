@@ -29,10 +29,10 @@ class StoreListAndDetailsTest extends TestCase
     public function the_store_details_are_the_correct_details()
     {
         Http::fake([
-            'https://target1.p.rapidapi.com/stores/get-details' => $this->fake_store_list()
+            'https://target1.p.rapidapi.com/stores/get-details' => $this->fake_store_details()
         ]);
 
-        $response = $this->get(route('stores', ['zipcode' => '911']));
+        $response = $this->get(route('store-info', ['location_id' => '1853']));
 
         $response->assertStatus(200);
 
